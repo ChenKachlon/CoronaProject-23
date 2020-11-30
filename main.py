@@ -49,21 +49,21 @@ def amount_of_beds_in_given_department():
     for i in range(3,row_location_beds):
         if str(ws_beds.cell(row=i,column=1).value) == str(department_name):
             amount += 1
-    if amount == 0:
+    if amount != 0:
+        print("Amount of beds in {0} department is: {1}".format(department_name, amount))
+    else:
         print("Department doesn't exist")
-        exit(1)
-    print("Amount of beds in {0} department is: {1}".format(department_name,amount))
 
-    def amount_of_beds_in_given_hospital():
+def amount_of_beds_in_given_hospital():
     """Calculate the amount of beds in the hospital"""
     row_location_beds = Get_Row_Indicator(ws_beds.max_row)
     amount = 0
     for i in range(3, row_location_beds):
         amount += 1
-    if amount == 0:
+    if amount != 0:
+        print("Amount of beds in the hospital is: {0}".format(amount))
+    else:
         print("Zero beds!!!")
-        exit(1)
-    print("Amount of beds in the hospital is: {0}".format(amount))
     return amount
 
 def amount_of_patients_in_given_department():
@@ -74,10 +74,22 @@ def amount_of_patients_in_given_department():
     for i in range(2,row_location):
         if str(ws.cell(row=i,column=4).value) == str(department_name):
             amount += 1
-    if amount == 0:
+    if amount != 0:
+        print("Amount of patients in {0} department is: {1}".format(department_name, amount))
+    else:
         print("Department doesn't exist")
-        exit(1)
-    print("Amount of patients in {0} department is: {1}".format(department_name,amount))
+    return amount
+
+def amount_of_patients_in_given_hospital():
+    """Calculate the amount of patients in the hospital """
+    row_location = Get_Row_Indicator(ws.max_row)
+    amount = 0
+    for i in range(2, row_location):
+        amount += 1
+    if amount != 0:
+        print("Amount of patients in the hospital is: {0}".format(amount))
+    else:
+        print("No patients!!!")
     return amount
 
 def main():
