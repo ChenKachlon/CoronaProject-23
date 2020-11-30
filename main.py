@@ -53,6 +53,7 @@ def amount_of_beds_in_given_department():
         print("Amount of beds in {0} department is: {1}".format(department_name, amount))
     else:
         print("Department doesn't exist")
+    return amount
 
 def amount_of_beds_in_given_hospital():
     """Calculate the amount of beds in the hospital"""
@@ -92,12 +93,21 @@ def amount_of_patients_in_given_hospital():
         print("No patients!!!")
     return amount
 
+def Sub_Amounts_Beds():
+    """Sub Amounts"""
+    return amount_of_beds_in_given_hospital() - amount_of_beds_in_given_department()
+
+def Sub_Amounts_Patients():
+    """Sub Amounts"""
+    return amount_of_patients_in_given_hospital() - amount_of_patients_in_given_department()
+
 def main():
-    add_patient()
-    release_patient()
-    amount_of_beds_in_given_department()
-    amount_of_beds_in_given_hospital()
-    amount_of_patients_in_given_department()
+    # add_patient()
+    # release_patient()
+    # amount_of_beds_in_given_department()
+    # amount_of_beds_in_given_hospital()
+    # amount_of_patients_in_given_department()
+    print(Sub_Amounts_Patients())
     Save_Data()
 
 main()
