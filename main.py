@@ -54,10 +54,38 @@ def amount_of_beds_in_given_department():
         exit(1)
     print("Amount of beds in {0} department is: {1}".format(department_name,amount))
 
+    def amount_of_beds_in_given_hospital():
+    """Calculate the amount of beds in the hospital"""
+    row_location_beds = Get_Row_Indicator(ws_beds.max_row)
+    amount = 0
+    for i in range(3, row_location_beds):
+        amount += 1
+    if amount == 0:
+        print("Zero beds!!!")
+        exit(1)
+    print("Amount of beds in the hospital is: {0}".format(amount))
+    return amount
+
+def amount_of_patients_in_given_department():
+    """Calculate the amount of patients in given department"""
+    row_location = Get_Row_Indicator(ws.max_row)
+    amount = 0
+    department_name = input("Please enter department name: ")
+    for i in range(2,row_location):
+        if str(ws.cell(row=i,column=4).value) == str(department_name):
+            amount += 1
+    if amount == 0:
+        print("Department doesn't exist")
+        exit(1)
+    print("Amount of patients in {0} department is: {1}".format(department_name,amount))
+    return amount
+
 def main():
     add_patient()
     release_patient()
     amount_of_beds_in_given_department()
+    amount_of_beds_in_given_hospital()
+    amount_of_patients_in_given_department()
     Save_Data()
 
 main()
