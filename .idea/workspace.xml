@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="63d2144f-b239-42aa-890e-a12b5b598cca" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/templates/accounts/Ventilators.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/templates/accounts/beds.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/templates/accounts/dashboard.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/templates/accounts/main.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/templates/accounts/navbar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/templates/accounts/patients.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/templates/accounts/status.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/crm/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/crm/asgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/crm/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/crm/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/crm/wsgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/db.sqlite3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/manage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/.idea/yesodotproject-sample.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/accounts/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/accounts/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/accounts/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/accounts/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/accounts/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/accounts/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/accounts/templates/accounts/Ventilators.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/accounts/templates/accounts/beds.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/accounts/templates/accounts/dashboard.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/accounts/templates/accounts/main.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/accounts/templates/accounts/navbar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/accounts/templates/accounts/patients.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/accounts/templates/accounts/status.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/accounts/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/accounts/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/accounts/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/crm/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/crm/asgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/crm/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/crm/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/crm/wsgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/manage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yesodotproject-sample/crm/static/css/main.css" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1mUEIegPOprt1mjz01JsiJq7Lm9" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="63d2144f-b239-42aa-890e-a12b5b598cca" name="Default Changelist" comment="" />
+      <created>1609539691834</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1609539691834</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2639" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1609540539544">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2639" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1609540539544" />
+    <state x="2660" y="275" key="FileChooserDialogImpl" timestamp="1609539710953">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2660" y="275" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1609539710953" />
+  </component>
+</project>
