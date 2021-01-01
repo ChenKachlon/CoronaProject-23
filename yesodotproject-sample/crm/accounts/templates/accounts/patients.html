@@ -1,0 +1,95 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+
+<h1>Patients</h1>
+<br>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Patients:</h5>
+			<hr>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="">Add patient</a>
+			<a class="btn btn-outline-danger  btn-sm btn-block" href="">Release patient</a>
+
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Amount of patients by departments:</h5>
+			<hr>
+			<p>Corona: </p>
+			<p>Emergency Room: </p>
+			<p>Heart: </p>
+			<p>ENT: </p>
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Total Patients in Hospital:</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px"></h1>
+		</div>
+	</div>
+</div>
+
+
+<br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form method="get">
+				<button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+		</div>
+	</div>
+
+</div>
+<br>
+		<div class="row">
+			<div class="col-md">
+				<div class="card card-body">
+					<h5>List of patients</h5>
+				</div>
+				<div class="card card-body">
+					<table class="table">
+						<tr>
+							<th>Name</th>
+							<th>ID</th>
+							<th>Phone</th>
+							<th>Department</th>
+							<th>Status</th>
+                            <th>Need for ventilator</th>
+							<th>Date of hospitalization</th>
+						</tr>
+						{% for i in patients %}
+						<tr>
+							<td>{{i.name}}</td>
+							<td>{{i.ID}}</td>
+							<td>{{i.phone}}</td>
+							<td>{{i.department1}}</td>
+							<td>{{i.status}}</td>
+							<td>{{i.need_ven}}</td>
+							<td>{{i.date_created}}</td>
+						</tr>
+						{% endfor %}
+
+					</table>
+				</div>
+			</div>
+
+		</div>
+
+	<style>
+	        #logo{
+		}
+
+		body{
+			background-color: #7CD1E0;
+		}
+    </style>
+
+{% endblock %}
