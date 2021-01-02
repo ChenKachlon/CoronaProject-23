@@ -6,13 +6,15 @@ def home(request):
     pati=Patient.objects.all()
     bedi=Bed.objects.all()
     ven=Ventilator.objects.all()
-    patients=pati.count()
     beds=bedi.count()
     xx=ven.count()
-    context = {'patients':patients,
+    free_beds=beds-pati.count()
+    context = {
              'beds':beds,
-             'Venentilators':xx,
-            'patients':pati}
+             'Ventilator':xx,
+             'patients':pati,
+             'freeBeds':free_beds
+    }
 
     return render(request,'accounts/dashboard.html',context)
 
@@ -22,7 +24,9 @@ def patients(request):
 
 def beds(request) :
     bedd = Bed.objects.all()
-    return render(request,'accounts/beds.html',{'beds': bedd})
+    # addbedd = bedd.addBeds()
+    return render(request,'accounts/beds.html',{'beds': bedd })
+    # , 'addBed': addbedd
 
 def ventilators(request) :
     venn = Ventilator.objects.all()

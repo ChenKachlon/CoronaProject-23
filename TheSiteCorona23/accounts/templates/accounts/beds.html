@@ -42,18 +42,10 @@
 </div>
 
 
-<br>
-<div class="row">
-	<div class="col">
-		<div class="card card-body">
-			<form method="get">
 
-		    <button class="btn btn-primary" type="submit">Search</button>
-		  </form>
-		</div>
-	</div>
 
 </div>
+<br>
 <br>
 
 <div class="row">
@@ -70,7 +62,7 @@
 					<th>Date of hospitalization</th>
 					<th>Room number</th>
 				</tr>
-				{% for i in Ventilators %}
+				{% for i in beds %}
 					<tr>
 						<td>{{i.name}}</td>
 						<td>{{i.department}}</td>

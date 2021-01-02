@@ -32,18 +32,26 @@ class Patient (models.Model):
         return self.name
 
 class Bed(models.Model):
+
     name=models.CharField(max_length=200,null=True)
     department=models.CharField(max_length=200,null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     room_number = models.IntegerField(null=True)
 
+    # num= models.CharField(max_length=200,null=True)
+
     objects = models.Manager()
-    #num= models.CharField(max_length=200,null=True)
-
-
+    # def addBeds(self,amount=1):
+    #     for i in range(amount):
+    #         Bed.name = "None"
+    #         department = models.CharField(max_length=200, null=True)
+    #         date_created = models.DateTimeField(auto_now_add=True, null=True)
+    #         room_number = models.IntegerField(null=True)
+    #         objects=objects+1
 
     def __str__(self):
         return self.name
+
 
 
 class Ventilator(models.Model):
