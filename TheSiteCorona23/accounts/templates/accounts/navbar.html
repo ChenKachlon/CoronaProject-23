@@ -2,23 +2,20 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <img src="{% static 'images/img1.png'%}">
-  <a class="navbar-brand" href="#">Management Of Medical Inventory</a>
+  <a class="navbar-brand" href="{% url 'home' %}">  <h1> Management Of Medical Inventory </h1> </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'home' %}">Home</a>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'patients' %}"> <h3> Patients</h3> </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'patients' %}">Patients</a>
+        <a class="nav-link" href="{% url 'beds' %}"> <h3> Beds </h3></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'beds' %}">Beds</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'ventilators' %}">Ventilators</a>
+        <a class="nav-link" href="{% url 'ventilators' %}"> <h3>Ventilators</h3></a>
       </li>
     </ul>
   </div>

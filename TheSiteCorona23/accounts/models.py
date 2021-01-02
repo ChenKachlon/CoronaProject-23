@@ -23,7 +23,7 @@ class Patient (models.Model):
     phone=models.CharField(max_length=200,null=True)
     #department1 = models.CharField(max_length=200, null=True,choices=DEP)
     status=models.CharField(max_length=200,null=True,choices=STATUS)
-    need_ven=models.CharField(max_length=200,null=True,choices=DEP)
+    need_ven=models.CharField(max_length=200,null=True,choices=VEN)
     date_created=models.DateTimeField(auto_now_add=True,null=True)
     objects=models.Manager()
 
