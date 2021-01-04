@@ -37,6 +37,7 @@ class Bed(models.Model):
     department=models.CharField(max_length=200,null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     room_number = models.IntegerField(null=True)
+   # amount= models.IntegerField(null=True)
 
     # num= models.CharField(max_length=200,null=True)
 

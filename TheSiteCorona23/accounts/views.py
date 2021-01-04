@@ -25,9 +25,7 @@ def patients(request):
 
 def beds(request) :
     bedd = Bed.objects.all()
-    # addbedd = bedd.addBeds()
     return render(request,'accounts/beds.html',{'beds': bedd })
-    # , 'addBed': addbedd
 
 def ventilators(request) :
     venn = Ventilator.objects.all()
@@ -36,10 +34,29 @@ def ventilators(request) :
 def addPatients(request):
     form=PatientForm()
     if request.method=='POST':
-        # print('printing POSt:',request.POST)
         form=PatientForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/')
     context={'form':form}
     return render(request,'accounts/patients_form.html',context)
+
+def addBeds(request):
+    form=BedForm()
+    if request.method=='POST':
+        form=BedForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context={'form':form}
+    return render(request,'accounts/beds_form.html',context)
+
+def addVen(request):
+    form=VenForm()
+    if request.method=='POST':
+        form=VenForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context={'form':form}
+    return render(request,'accounts/ventilators_form.html',context)
