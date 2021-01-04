@@ -1,0 +1,50 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+{% include 'accounts/status.html' %}
+
+<br>
+
+<div class="row">
+
+	<div class="col-md-12">
+		<h4>List of Patients:</h4>
+		<hr>
+
+		<div class="card card-body">
+			<div class="col-md-2">
+				<a class="btn btn-primary  btn-sm btn-block" href="{% url 'add_patient' %}"> <h6> Add new patient </h6> </a>
+
+			</div>
+			<table class="table table-sm">
+				<tr>
+					<th>Name</th>
+					<th>ID</th>
+					<th>Phone</th>
+					<th>Status</th>
+					<th>Updating Status</th>
+					<th>Need for ventilator</th>
+					<th>Date of hospitalization</th>
+					<th>Delete patient</th>
+				</tr>
+				{% for i in patients %}
+				<tr>
+					<td>{{i.name}}</td>
+					<td>{{i.ID}}</td>
+					<td>{{i.phone}}</td>
+					<td>{{i.status}}</td>
+					<td><a href="">Update</a></td>
+					<td>{{i.need_ven}}</td>
+					<td>{{i.date_created}}</td>
+					<td><a class="btn btn-sm btn-danger" href="">Delete</a></td>
+				</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}

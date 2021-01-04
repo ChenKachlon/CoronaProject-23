@@ -1,0 +1,88 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+
+
+<h1>Ventilators</h1>
+
+	<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Ventilators:</h5>
+			<hr>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'add_ven' %}"> <h6> Add Ventilator</h6> </a>
+			<a class="btn btn-outline-danger  btn-sm btn-block" href=""> <h6> Delete Ventilator </h6> </a>
+
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Amount of Ventilators by departments:</h5>
+			<hr>
+			<p>Corona: </p>
+			<p>Emergency Room: </p>
+			<p>Heart: </p>
+			<p>ENT: </p>
+
+
+
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Total Ventilators in Hospital:</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{Ventilators.count}}</h1>
+		</div>
+	</div>
+</div>
+
+
+<br>
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>List of Ventilators</h5>
+		</div>
+		<div class="card card-body">
+			<table class="table table-sm">
+
+				<tr>
+					<th>Name of patient</th>
+					<th>Department</th>
+					<th>Date of hospitalization</th>
+					<th>Room number</th>
+					<th>Ventilator number</th>
+				</tr>
+				{% for i in Ventilators %}
+					<tr>
+						<td>{{i.name}}</td>
+						<td>{{i.department}}</td>
+						<td>{{i.date_created}}</td>
+						<td>{{i.room_number}}</td>
+						<td>{{i.ventilator_number}}</td>
+					</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+	<style>
+	        #logo{
+		}
+
+		body{
+			background-color: #7CD1E0;
+		}
+	</style>
+
+{% endblock %}
