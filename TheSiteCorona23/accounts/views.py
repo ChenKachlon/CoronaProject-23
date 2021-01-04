@@ -42,4 +42,4 @@ def addPatients(request):
             form.save()
             return redirect('/')
     context={'form':form}
-    return  render(request,'accounts/patients_form.html',context)
+    return render(request,'accounts/patients_form.html',context)
