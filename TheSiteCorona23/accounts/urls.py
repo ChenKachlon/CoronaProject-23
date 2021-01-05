@@ -14,6 +14,7 @@ urlpatterns = [
     path('add_patient/', views.addPatients, name='add_patient'),
     path('add_bed/', views.addBeds, name='add_bed'),
     path('add_ven/', views.addVen, name='add_ven'),
+    # path('max', views.MaxConcentration, name='max'),
     # path('staff/<str:pk>/', views.staff, name='staff_page'),
 
 ]

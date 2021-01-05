@@ -56,7 +56,7 @@ def home(request):
     xx=ven.count()
     free_beds=beds-pati.count()
     if(free_beds<0):
-        free_beds='shortage of beds'
+        free_beds='shortage of beds!!!'
     context = {
              'beds': beds,
              'Ventilator': xx,
@@ -114,4 +114,17 @@ def addVen(request):
     context={'form':form}
     return render(request,'accounts/ventilators_form.html',context)
 
+
+# @login_required(login_url='login')
+# def MaxConcentration(request):
+#     # print('update the max concentration')
+#     x = input()
+#     # form=VenForm()
+#     # if request.method=='POST':
+#     # #     form=VenForm(request.POST)
+#     # #     if form.is_valid():
+#     #          form.save()
+#     #         return redirect('/')
+#     # context={'form':form}
+#     return x
 # def staff(request):
