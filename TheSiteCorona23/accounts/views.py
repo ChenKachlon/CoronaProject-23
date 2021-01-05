@@ -72,6 +72,25 @@ def patients(request):
     return render(request, 'accounts/patients.html', {'patients':pat})
 
 @login_required(login_url='login')
+def bedsInDep(request):
+    temp=Bed.objects.get('Corona')
+    CoronaBed=temp.count
+    temp1 = Bed.objects.get('Emergency Room')
+    Emergency_Room_Bed = temp1.count
+    temp2 = Bed.objects.get('Heart')
+    HeartBed = temp2.count
+    temp3 = Bed.objects.get('ENP')
+    ENTbed = temp3.count
+    context = {
+             'Corona': CoronaBed,
+             'Emergency Room': Emergency_Room_Bed,
+             'Heart': HeartBed,
+             'ENP': ENTbed
+    }
+    return render(request, 'accounts/beds.html', context)
+
+
+@login_required(login_url='login')
 def beds(request) :
     bedd = Bed.objects.all()
     return render(request,'accounts/beds.html',{'beds': bedd })
@@ -113,6 +132,7 @@ def addVen(request):
             return redirect('/')
     context={'form':form}
     return render(request,'accounts/ventilators_form.html',context)
+
 
 
 # @login_required(login_url='login')
