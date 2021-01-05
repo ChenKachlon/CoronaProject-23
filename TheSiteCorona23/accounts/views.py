@@ -93,6 +93,18 @@ def addPatients(request):
     return render(request,'accounts/patients_form.html',context)
 
 @login_required(login_url='login')
+def updatePatient(request, pk):
+    patient = Patient.objects.get(id=pk)
+    form = PatientForm(instance=patient)
+    if request.method=='POST':
+        form=PatientForm(request.POST,instance=patient)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context={'form':form}
+    return  render(request,'accounts/patients_form.html',context)
+
+@login_required(login_url='login')
 def addBeds(request):
     form=BedForm()
     if request.method=='POST':
