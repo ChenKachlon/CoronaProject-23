@@ -56,8 +56,11 @@ def home(request):
     bedi=Bed.objects.all()
     ven=Ventilator.objects.all()
     beds=bedi.count()
+    free_beds =0
     xx=ven.count()
-    free_beds=beds-pati.count()
+    for i in Bed.objects.all():
+        if (i.name=='Unknown'):
+            free_beds += 1
     if(free_beds<0):
         free_beds='Shortage of beds!!!'
     context = {
