@@ -55,8 +55,8 @@ def home(request):
     beds=bedi.count()
     xx=ven.count()
     free_beds=beds-pati.count()
-    if free_beds < 0:
-        free_beds='shortage of beds!!!'
+    if(free_beds<0):
+        free_beds='Shortage of beds!!!'
     context = {
              'beds': beds,
              'Ventilator': xx,
@@ -129,7 +129,7 @@ def addPatients(request):
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manger', 'help_desk'])
-def updatePatient(request, pk):
+def updatePatient(request,pk):
     patient = Patient.objects.get(id=pk)
     form = PatientForm(instance=patient)
     if request.method=='POST':
@@ -138,7 +138,17 @@ def updatePatient(request, pk):
             form.save()
             return redirect('/')
     context={'form':form}
-    return  render(request,'accounts/patients_form.html',context)
+    return render(request,'accounts/patients_form.html',context)
+
+@login_required(login_url='login')
+def deletePatient(request,pk):
+    patient = Patient.objects.get(id=pk)
+    if request.method=='POST':
+        patient.delete()
+        return redirect('/')
+    context = {'patient':patient}
+    return render(request,'accounts/delete_patient.html',context)
+
 
 
 @login_required(login_url='login')

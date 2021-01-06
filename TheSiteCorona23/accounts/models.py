@@ -16,9 +16,6 @@ class Bed(models.Model):
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     room_number = models.IntegerField(null=True)
    # amount= models.IntegerField(null=True)
-
-    # num= models.CharField(max_length=200,null=True)
-
     objects = models.Manager()
 
     def __str__(self):
@@ -65,7 +62,6 @@ class Patient (models.Model):
     name=models.CharField(max_length=200,null=True)
     ID=models.CharField(max_length=200,null=True)
     phone=models.CharField(max_length=200,null=True)
-    #department = models.CharField(max_length=200,null=True,choices=DEP)
     status=models.CharField(max_length=200,null=True,choices=STATUS)
     need_ven=models.CharField(max_length=200,null=True,choices=VEN)
     date_created=models.DateTimeField(auto_now_add=True,null=True)

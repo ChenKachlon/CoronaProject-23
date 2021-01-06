@@ -1,0 +1,12 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+<p></p>
+<h3>Are you sure you want to delete patient "{{patient}}" from the system?</h3>
+<p></p>
+<form action="{%url 'delete_patient' patient.id%}"    method="POST">
+    {% csrf_token %}
+    <a href="http://127.0.0.1:8000/">Cancel</a>
+    <input type="submit" name="Confirm" value="Confirm">
+</form>
+{% endblock %}
