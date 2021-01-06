@@ -16,6 +16,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
+      {% if request.user.is_staff %}
       <li class="nav-item">
         <a class="nav-link" href="{% url 'patients' %}"> <h3> Patients</h3> </a>
       </li>
@@ -25,6 +26,7 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'ventilators' %}"> <h3>Ventilators</h3></a>
       </li>
+      {% endif %}
     </ul>
   </div>
   <span class="hello-msg">Hello, {{request.user}}</span>
