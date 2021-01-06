@@ -2,44 +2,45 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import *
 from .forms import *
+from .decorators import *
 
 # Create your views here.
 
+
+@unauthenticated_user
 def registerPage(request):
-    if request.user.is_authenticated:
-        return redirect('home')
-    else:
-        form = CreateUserForm()
-        if request.method == 'POST':
-            form = CreateUserForm(request.POST)
-            if form.is_valid():
-                form.save()
-                user = form.cleaned_data.get('username')
-                messages.success(request, 'Account was created for ' + user)
-                return redirect('login')
-        context = {'form':form}
-        return render(request,'accounts/register.html',context)
+    form = CreateUserForm()
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            group = Group.objects.get(name='staff')
+            user.groups.add(group)
+            username = form.cleaned_data.get('username')
+            messages.success(request, 'Account was created for ' + username)
+            return redirect('login')
+    context = {'form': form}
+    return render(request, 'accounts/register.html', context)
 
 
+@unauthenticated_user
 def loginPage(request):
-    if request.user.is_authenticated:
-        return redirect('home')
-    else:
-        if request.method == 'POST':
-            username = request.POST.get('username')
-            password = request.POST.get('password')
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('home')
-            else:
-                messages.info(request, 'Incorrect username OR password')
-        context = {}
-        return render(request, 'accounts/login.html', context)
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.info(request, 'Incorrect username OR password')
+    context = {}
+    return render(request, 'accounts/login.html', context)
 
 
 @login_required(login_url='login')
@@ -47,7 +48,9 @@ def logoutUser(request):
     logout(request)
     return redirect('login')
 
+
 @login_required(login_url='login')
+@manger_only
 def home(request):
     pati=Patient.objects.all()
     bedi=Bed.objects.all()
@@ -63,15 +66,25 @@ def home(request):
              'patients': pati,
              'freeBeds': free_beds
     }
-
     return render(request,'accounts/dashboard.html',context)
 
+
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['senior', 'staff', 'help_desk'])
+def departmentPage(request):
+    context = {}
+    return render(request, 'accounts/department.html', context)
+
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['manger', 'help_desk'])
 def patients(request):
     pat = Patient.objects.all()
     return render(request, 'accounts/patients.html', {'patients':pat})
 
+
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['manger', 'help_desk'])
 def bedsInDep(request):
     temp=Bed.objects.get('Corona')
     CoronaBed=temp.count
@@ -91,16 +104,21 @@ def bedsInDep(request):
 
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['manger', 'help_desk'])
 def beds(request) :
     bedd = Bed.objects.all()
     return render(request,'accounts/beds.html',{'beds': bedd })
 
+
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['manger', 'help_desk'])
 def ventilators(request) :
     venn = Ventilator.objects.all()
     return render(request,'accounts/Ventilators.html',{'Ventilators': venn})
 
+
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['manger', 'help_desk'])
 def addPatients(request):
     form=PatientForm()
     if request.method=='POST':
@@ -111,7 +129,9 @@ def addPatients(request):
     context={'form':form}
     return render(request,'accounts/patients_form.html',context)
 
+
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['manger', 'help_desk'])
 def updatePatient(request,pk):
     patient = Patient.objects.get(id=pk)
     form = PatientForm(instance=patient)
@@ -133,7 +153,9 @@ def deletePatient(request,pk):
     return render(request,'accounts/delete_patient.html',context)
 
 
+
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['manger', 'help_desk'])
 def addBeds(request):
     form=BedForm()
     if request.method=='POST':
@@ -144,7 +166,9 @@ def addBeds(request):
     context={'form':form}
     return render(request,'accounts/beds_form.html',context)
 
+
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['manger', 'help_desk'])
 def addVen(request):
     form=VenForm()
     if request.method=='POST':
