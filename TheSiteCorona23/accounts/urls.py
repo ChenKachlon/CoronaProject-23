@@ -8,7 +8,7 @@ urlpatterns = [
     path('login/', views.loginPage, name='login'),
     path('logout/', views.logoutUser, name='logout'),
     path('', views.home, name='home'),
-    path('department/', views.departmentPage, name='department'),
+    # path('department/', views.departmentPage, name='department'),
     path('patients/', views.patients, name='patients'),
     path('beds/', views.beds, name='beds'),
     path('ventilators/', views.ventilators, name='ventilators'),
@@ -19,5 +19,4 @@ urlpatterns = [
     path('add_ven/', views.addVen, name='add_ven'),
     # path('max', views.MaxConcentration, name='max'),
     # path('staff/<str:pk>/', views.staff, name='staff_page'),
-
 ]
