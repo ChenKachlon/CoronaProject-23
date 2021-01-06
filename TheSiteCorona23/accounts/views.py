@@ -166,6 +166,17 @@ def addBeds(request):
     context={'form':form}
     return render(request,'accounts/beds_form.html',context)
 
+def updateBeds(request,pk):
+    bed = Bed.objects.get(id=pk)
+    form = BedForm(instance=bed)
+    if request.method=='POST':
+        form=BedForm(request.POST,instance=bed)
+        if form.is_valid():
+            form.save()
+            return redirect('/beds/')
+    context={'form':form}
+    return render(request,'accounts/beds_form.html',context)
+
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manger', 'help_desk'])
