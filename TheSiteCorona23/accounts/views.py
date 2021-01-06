@@ -55,7 +55,7 @@ def home(request):
     beds=bedi.count()
     xx=ven.count()
     free_beds=beds-pati.count()
-    if(free_beds<0):
+    if free_beds < 0:
         free_beds='shortage of beds!!!'
     context = {
              'beds': beds,
@@ -63,8 +63,11 @@ def home(request):
              'patients': pati,
              'freeBeds': free_beds
     }
-
     return render(request,'accounts/dashboard.html',context)
+
+def departmentPage(request):
+    context = {}
+    return render(request,'accounts/department.html',context)
 
 @login_required(login_url='login')
 def patients(request):
