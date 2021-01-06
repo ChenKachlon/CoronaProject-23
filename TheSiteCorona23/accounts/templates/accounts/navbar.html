@@ -1,5 +1,13 @@
 {% load static %}
 
+<style>
+  .hello-msg{
+    font-size: 22px;
+    color: #fff;
+    margin-right: 24px;
+  }
+  </style>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <img src="{% static 'images/img1.png'%}">
   <a class="navbar-brand" href="{% url 'home' %}">  <h1> Management Of Medical Inventory </h1> </a>
@@ -8,6 +16,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
+      {% if request.user.is_staff %}
       <li class="nav-item">
         <a class="nav-link" href="{% url 'patients' %}"> <h3> Patients</h3> </a>
       </li>
@@ -17,6 +26,9 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'ventilators' %}"> <h3>Ventilators</h3></a>
       </li>
+      {% endif %}
     </ul>
   </div>
+  <span class="hello-msg">Hello, {{request.user}}</span>
+  <span><a class="hello-msg" href="{% url 'logout' %}">Logout</a> </span>
 </nav>

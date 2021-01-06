@@ -20,15 +20,22 @@
 
 	<div class="col-md">
 		<div class="card card-body">
-			<h5>Amount of beds by departments:</h5>
-			<hr>
-			<p>Corona: </p>
-			<p>Emergency Room: </p>
-			<p>Heart: </p>
-			<p>ENT: </p>
+			<tr>
+				<h5>Amount of beds by departments:</h5>
+				<hr>
+				<p>Corona:
+				<p>Emergency Room: </p>
+				<p>Heart: </p>
+				<p>ENT: </p>
+			</tr>
+			{% for i in beds %}
+			<tr>
+				<td>{{i.CoronaBed}}</td>
+				<td>{{i.Emergency_Room_Bed}}</td>
+				<td>{{i.HeartBed}}</td>
+				<td>{{i.ENTbed}}</td>
 
-
-
+			{% endfor %}
 		</div>
 	</div>
 
