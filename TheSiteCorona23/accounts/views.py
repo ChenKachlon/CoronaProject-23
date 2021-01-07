@@ -56,11 +56,8 @@ def home(request):
     bedi=Bed.objects.all()
     ven=Ventilator.objects.all()
     beds=bedi.count()
-    free_beds =0
     xx=ven.count()
-    for i in Bed.objects.all():
-        if (i.name=='Unknown'):
-            free_beds += 1
+    free_beds=beds-pati.count()
     if(free_beds<0):
         free_beds='Shortage of beds!!!'
     context = {
@@ -166,17 +163,6 @@ def addBeds(request):
         if form.is_valid():
             form.save()
             return redirect('/')
-    context={'form':form}
-    return render(request,'accounts/beds_form.html',context)
-
-def updateBeds(request,pk):
-    bed = Bed.objects.get(id=pk)
-    form = BedForm(instance=bed)
-    if request.method=='POST':
-        form=BedForm(request.POST,instance=bed)
-        if form.is_valid():
-            form.save()
-            return redirect('/beds/')
     context={'form':form}
     return render(request,'accounts/beds_form.html',context)
 
