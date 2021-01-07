@@ -58,10 +58,15 @@ def home(request):
     ven = Ventilator.objects.all()
     beds = bedi.count()
     xx = ven.count()
-    free_beds = beds - pati.count()
+    free_beds = 0
+    for i in Bed.objects.all():
+        if (i.name == 'Unknown'):
+            free_beds += 1
+    concentration = Concentration.objects.all()[0]
     if free_beds < 0:
         free_beds = 'Shortage of beds!!!'
     context = {
+        'concentration':concentration,
         'beds': beds,
         'Ventilator': xx,
         'patients': pati,
@@ -84,31 +89,39 @@ def patients(request):
     return render(request, 'accounts/patients.html', {'patients': pat})
 
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['manger', 'help_desk'])
-def bedsInDep(request):
-    temp = Bed.objects.get('Corona')
-    CoronaBed = temp.count
-    temp1 = Bed.objects.get('Emergency Room')
-    Emergency_Room_Bed = temp1.count
-    temp2 = Bed.objects.get('Heart')
-    HeartBed = temp2.count
-    temp3 = Bed.objects.get('ENP')
-    ENTbed = temp3.count
-    context = {
-        'Corona': CoronaBed,
-        'Emergency Room': Emergency_Room_Bed,
-        'Heart': HeartBed,
-        'ENP': ENTbed
-    }
-    return render(request, 'accounts/beds.html', context)
+# @login_required(login_url='login')
+# @allowed_users(allowed_roles=['manger', 'help_desk'])
+# def bedsInDep(request):
+#     temp = Bed.objects.all()
+#     Corona = temp.filter(department='Corona').count()
+#     EmergencyRoom = temp.filter(department='Emergency room').count()
+#     Heart = temp.filter(department='Heart').count()
+#     ENT = temp.filter(department='ENT').count()
+#     context = {
+#         'Corona': Corona,
+#         'EmergencyRoom': EmergencyRoom,
+#         'Heart': Heart,
+#         'ENP': ENT,
+#     }
+#     return render(request, 'accounts/beds.html', context)
 
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manger', 'help_desk'])
 def beds(request):
-    bedd = Bed.objects.all()
-    return render(request, 'accounts/beds.html', {'beds': bedd})
+    temp = Bed.objects.all()
+    Corona = temp.filter(department='Corona').count()
+    EmergencyRoom = temp.filter(department='Emergency room').count()
+    Heart = temp.filter(department='Heart').count()
+    ENP = temp.filter(department='ENP').count()
+    context = {
+        'beds': temp,
+        'Corona': Corona,
+        'EmergencyRoom': EmergencyRoom,
+        'Heart': Heart,
+        'ENP': ENP,
+        }
+    return render(request, 'accounts/beds.html', context)
 
 
 @login_required(login_url='login')
@@ -166,6 +179,20 @@ def addBeds(request):
             return redirect('/')
     context = {'form': form}
     return render(request, 'accounts/beds_form.html', context)
+
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['manger', 'help_desk'])
+def updateBeds(request,pk):
+    bed = Bed.objects.get(id=pk)
+    form = BedForm(instance=bed)
+    if request.method=='POST':
+        form=BedForm(request.POST,instance=bed)
+        if form.is_valid():
+            form.save()
+            return redirect('/beds/')
+    context={'form':form}
+    return render(request,'accounts/beds_form.html',context)
 
 
 @login_required(login_url='login')

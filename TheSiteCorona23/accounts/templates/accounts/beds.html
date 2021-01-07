@@ -23,19 +23,11 @@
 			<tr>
 				<h5>Amount of beds by departments:</h5>
 				<hr>
-				<p>Corona:
-				<p>Emergency Room: </p>
-				<p>Heart: </p>
-				<p>ENT: </p>
+				<p>Corona: {{Corona}}</p>
+				<p>Emergency Room: {{EmergencyRoom}}</p>
+				<p>Heart:  {{Heart}}</p>
+				<p>ENP: {{ENP}}</p>
 			</tr>
-			{% for i in beds %}
-			<tr>
-				<td>{{i.CoronaBed}}</td>
-				<td>{{i.Emergency_Room_Bed}}</td>
-				<td>{{i.HeartBed}}</td>
-				<td>{{i.ENTbed}}</td>
-
-			{% endfor %}
 		</div>
 	</div>
 
@@ -66,6 +58,7 @@
 				<tr>
 					<th>Name of patient</th>
 					<th>Department</th>
+					<th>Change Department</th>
 					<th>Date of hospitalization</th>
 					<th>Room number</th>
 				</tr>
@@ -73,6 +66,7 @@
 					<tr>
 						<td>{{i.name}}</td>
 						<td>{{i.department}}</td>
+						<td><a class="btn btn-sm btn-info" href="{%url 'update_beds' i.id%}">Change</a></td>
 						<td>{{i.date_created}}</td>
 						<td>{{i.room_number}}</td>
 					</tr>
