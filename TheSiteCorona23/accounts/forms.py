@@ -10,17 +10,20 @@ class PatientForm(ModelForm):
         model = Patient
         fields = '__all__'
 
+
 class BedForm(ModelForm):
     class Meta:
         model = Bed
         fields = '__all__'
+
 
 class VenForm(ModelForm):
     class Meta:
         model = Ventilator
         fields = '__all__'
 
+
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
-        fields =['username','email','password1','password2']
+        fields = ['username', 'email', 'password1', 'password2']
