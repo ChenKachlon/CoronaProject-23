@@ -11,6 +11,7 @@
 			<h5>Patients:</h5>
 			<hr>
 			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'add_patient' %}"> <h6> Add patient </h6> </a>
+<!--            <a class="btn btn-outline-info  btn-sm btn-block" href=""> <h6> Search patient </h6> </a>-->
 			<a class="btn btn-outline-danger  btn-sm btn-block" href=""> <h6> Generate a report </h6> </a>
 
 		</div>
@@ -42,20 +43,12 @@
 
 <br>
 <div class="row">
-	<div class="col">
-		<div class="card card-body">
-			<form method="get">
-				<button class="btn btn-primary" type="submit">Search</button>
-		  </form>
-		</div>
-	</div>
-
 </div>
 <br>
 		<div class="row">
 			<div class="col-md">
 				<div class="card card-body">
-					<h5>List of patients</h5>
+					<h5>List of patients:</h5>
 				</div>
 				<div class="card card-body">
 					<table class="table">

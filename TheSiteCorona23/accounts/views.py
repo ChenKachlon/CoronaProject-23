@@ -167,6 +167,23 @@ def updatePatient(request, pk):
     context = {'form': form}
     return render(request, 'accounts/patients_form.html', context)
 
+# @login_required(login_url='login')
+# @allowed_users(allowed_roles=['manger', 'help_desk'])
+# def SearchPatient(request, pk):
+#     for i in patients:
+#         patient = Patient.objects.filter(id=pk)
+#         form = PatientForm(instance=patient)
+#     if request.method == 'POST':
+#         form = PatientForm(request.POST, instance=patient)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('/')
+#     context = {'form': form}
+#     return render(request, 'accounts/patients_search.html', context)
+
+
+
+
 
 @login_required(login_url='login')
 def deletePatient(request, pk):
