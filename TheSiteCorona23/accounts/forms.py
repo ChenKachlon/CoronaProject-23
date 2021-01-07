@@ -10,12 +10,10 @@ class PatientForm(ModelForm):
         model = Patient
         fields = '__all__'
 
-
 class BedForm(ModelForm):
     class Meta:
         model = Bed
         fields = '__all__'
-
 
 class VenForm(ModelForm):
     class Meta:
@@ -27,6 +25,15 @@ class ConcentrationForm(ModelForm):
         model = Concentration
         fields = '__all__'
 
+class EquipForm(ModelForm):
+    class Meta:
+        model = Equipment
+        fields = '__all__'
+
+class ReqForm(ModelForm):
+    class Meta:
+        model = RequestForm
+        fields = '__all__'
 
 class CreateUserForm(UserCreationForm):
     class Meta:

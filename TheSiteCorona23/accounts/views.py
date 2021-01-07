@@ -96,7 +96,9 @@ def patients(request):
     medium = temp.filter(status='medium ill').count()
     seriously = temp.filter(status='seriously ill').count()
     dying = temp.filter(status='dying').count()
+    need_ven=temp.filter(need_ven='YES').count()
     context = {
+        'need_ven':need_ven,
         'patients': temp,
         'mildly': mildly,
         'medium': medium,
@@ -149,7 +151,7 @@ def addPatients(request):
         form = PatientForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('/patients/')
     context = {'form': form}
     return render(request, 'accounts/patients_form.html', context)
 
@@ -163,26 +165,9 @@ def updatePatient(request, pk):
         form = PatientForm(request.POST, instance=patient)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('/patients/')
     context = {'form': form}
     return render(request, 'accounts/patients_form.html', context)
-
-# @login_required(login_url='login')
-# @allowed_users(allowed_roles=['manger', 'help_desk'])
-# def SearchPatient(request, pk):
-#     for i in patients:
-#         patient = Patient.objects.filter(id=pk)
-#         form = PatientForm(instance=patient)
-#     if request.method == 'POST':
-#         form = PatientForm(request.POST, instance=patient)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('/')
-#     context = {'form': form}
-#     return render(request, 'accounts/patients_search.html', context)
-
-
-
 
 
 @login_required(login_url='login')
@@ -190,7 +175,7 @@ def deletePatient(request, pk):
     patient = Patient.objects.get(id=pk)
     if request.method == 'POST':
         patient.delete()
-        return redirect('/')
+        return redirect('/patients/')
     context = {'patient': patient}
     return render(request, 'accounts/delete_patient.html', context)
 
@@ -203,7 +188,7 @@ def addBeds(request):
         form = BedForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('/beds/')
     context = {'form': form}
     return render(request, 'accounts/beds_form.html', context)
 
@@ -226,7 +211,7 @@ def deleteBed(request, pk):
     bed = Bed.objects.get(id=pk)
     if request.method == 'POST':
         bed.delete()
-        return redirect('/')
+        return redirect('/beds/')
     context = {'bed': bed}
     return render(request, 'accounts/beds_form.html', context)
 
@@ -239,7 +224,7 @@ def addVen(request):
         form = VenForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('/ventilators/')
     context = {'form': form}
     return render(request, 'accounts/ventilators_form.html', context)
 
@@ -263,7 +248,7 @@ def deleteVen(request, pk):
     ven = Ventilator.objects.get(id=pk)
     if request.method == 'POST':
         ven.delete()
-        return redirect('/')
+        return redirect('/ventilators/')
     context = {'ven': ven}
     return render(request, 'accounts/ventilators_form.html', context)
 
@@ -279,6 +264,63 @@ def setConcentration(request,pk):
             return redirect('/')
     context = {'form': form}
     return render(request, 'accounts/concentration_form.html', context)
+
+@login_required(login_url='login')
+def equipmentPage(request):
+    equipment = Equipment.objects.all()
+    total_equipment = Equipment.objects.all().count()
+    context = {
+        'total_equipment':total_equipment,
+        'equipment': equipment,
+    }
+    return render(request, 'accounts/equipment.html', context)
+
+@login_required(login_url='login')
+def addEquipment(request):
+    form = EquipForm
+    if request.method == 'POST':
+        form = EquipForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/equipment/')
+    context = {'form': form}
+    return render(request, 'accounts/equipment_form.html', context)
+
+
+@login_required(login_url='login')
+def updateEquipment(request,pk):
+    eq = Equipment.objects.get(id=pk)
+    form = EquipForm(instance=eq)
+    if request.method=='POST':
+        form=EquipForm(request.POST,instance=eq)
+        if form.is_valid():
+            form.save()
+            return redirect('/equipment/')
+    context={'form':form}
+    return render(request,'accounts/equipment_form.html',context)
+
+
+@login_required(login_url='login')
+def deleteEquipment(request, pk):
+    eq = Equipment.objects.get(id=pk)
+    if request.method == 'POST':
+        eq.delete()
+        return redirect('/equipment/')
+    context = {'eq': eq}
+    return render(request, 'accounts/equipment_form.html', context)
+
+
+@login_required(login_url='login')
+def createRequest(request):
+    form = ReqForm()
+    if request.method == 'POST':
+        form = ReqForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context = {'form': form}
+    return render(request, 'accounts/request_form.html', context)
+
 
 
 

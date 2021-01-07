@@ -77,6 +77,34 @@ class Concentration(models.Model):
     def __str__(self):
         return str(self.Amount)
 
+
+class Equipment(models.Model):
+    DEP = (
+        ('Corona', 'Corona'),
+        ('ENP', 'ENP'),
+        ('Heart', 'Heart'),
+        ('Emergency room', 'Emergency room'),
+        ('Stock', 'Stock'),
+    )
+    name=models.CharField(max_length=200, null=True)
+    department=models.CharField(max_length=264, null=True, choices=DEP)
+    date_registered = models.DateTimeField(auto_now_add=True, null=True)
+    objects = models.Manager()
+
+    def __str__(self):
+        return self.name
+
+class RequestForm(models.Model):
+    OPTION={
+        ('Add Equipment', 'Add Equipment'),
+        ('Add Beds','Add Beds'),
+    }
+    name=models.CharField(max_length=264, null=True)
+    request=models.CharField(max_length=264, null=True, choices=OPTION)
+    description=models.TextField(max_length=264, null=True)
+    date_registered = models.DateTimeField(auto_now_add=True, null=True)
+    objects = models.Manager()
+
 #
 # class User(models.Model):
 #     user = models.OneToOneField(User,null=True,on_delete=models.CASCADE)

@@ -1,0 +1,73 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+
+
+<h1>Equipment</h1>
+
+	<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Equipment:</h5>
+			<hr>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'add_equip' %}"> <h6> Add Equipment</h6> </a>
+
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Total Equipment in Hospital:</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{total_equipment}}</h1>
+		</div>
+	</div>
+</div>
+
+</div>
+<br>
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>List of Equipment:</h5>
+		</div>
+		<div class="card card-body">
+			<table class="table table-sm">
+
+				<tr>
+					<th>Name</th>
+					<th>Department</th>
+					<th>Change Department</th>
+					<th>Date of registration</th>
+					<th>Delete equipment</th>
+				</tr>
+				{% for i in equipment %}
+					<tr>
+						<td>{{i.name}}</td>
+						<td>{{i.department}}</td>
+						<td><a class="btn btn-sm btn-info" href="{%url 'update_equip' i.id%}">Change</a></td>
+						<td>{{i.date_registered}}</td>
+						<td><a class="btn btn-sm btn-danger" href="{%url 'delete_equipment' i.id%}">Delete</a></td>
+					</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+	<style>
+	        #logo{
+		}
+
+		body{
+			background-color: #7CD1E0;
+		}
+	</style>
+
+{% endblock %}
