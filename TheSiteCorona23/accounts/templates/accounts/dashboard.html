@@ -12,7 +12,7 @@
 		<h4>List of Patients:</h4>
 		<hr>
 
-		<div class="card card-body">
+		<div class="card card-body" id="general">
 			<div class="col-md-2">
 				<a class="btn btn-primary  btn-sm btn-block" href="{% url 'create_request' %}"> <h6>Request</h6> </a>
 
@@ -46,5 +46,16 @@
 	</div>
 
 </div>
+
+	<style>
+	        #logo{
+		}
+		#general{
+		background-color: #D3D3D3;
+		}
+		body{
+			background-color: #7CD1E0;
+		}
+	</style>
 
 {% endblock %}

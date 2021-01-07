@@ -10,7 +10,7 @@
 
 <div class="row">
 	<div class="col-md">
-		<div class="card card-body">
+		<div class="card card-body" id="general">
 			<h5>Ventilators:</h5>
 			<hr>
 			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'add_ven' %}"> <h6> Add Ventilator</h6> </a>
@@ -20,7 +20,7 @@
 	</div>
 
 	<div class="col-md">
-		<div class="card card-body">
+		<div class="card card-body" id="general">
 			<h5>Amount of Ventilators by departments:</h5>
 			<hr>
 			<p>Corona: {{Corona}}</p>
@@ -32,7 +32,7 @@
 	</div>
 
 	<div class="col-md">
-		<div class="card card-body">
+		<div class="card card-body" id="general">
 			<h5>Total Ventilators in Hospital:</h5>
 			<hr>
 			<h1 style="text-align: center;padding: 10px">{{Ventilators.count}}</h1>
@@ -46,10 +46,10 @@
 
 <div class="row">
 	<div class="col-md">
-		<div class="card card-body">
+		<div class="card card-body" id="general">
 			<h5>List of Ventilators:</h5>
 		</div>
-		<div class="card card-body">
+		<div class="card card-body" id="general">
 			<table class="table table-sm">
 
 				<tr>
@@ -82,7 +82,9 @@
 	<style>
 	        #logo{
 		}
-
+		#general{
+		background-color: #D3D3D3;
+		}
 		body{
 			background-color: #7CD1E0;
 		}

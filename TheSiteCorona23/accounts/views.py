@@ -277,11 +277,26 @@ def setConcentration(request, pk):
 def equipmentPage(request):
     equipment = Equipment.objects.all()
     total_equipment = Equipment.objects.all().count()
+    Corona = equipment.filter(department='Corona').count()
+    EmergencyRoom = equipment.filter(department='Emergency room').count()
+    Heart = equipment.filter(department='Heart').count()
+    ENP = equipment.filter(department='ENP').count()
+    Stock = equipment.filter(department='Stock').count()
     context = {
-        'total_equipment': total_equipment,
-        'equipment': equipment,
+        'equipment':equipment,
+        'total_equipment':total_equipment,
+        'Corona': Corona,
+        'EmergencyRoom': EmergencyRoom,
+        'Heart': Heart,
+        'ENP': ENP,
+        'Stock':Stock,
     }
     return render(request, 'accounts/equipment.html', context)
+
+
+
+
+
 
 
 @login_required(login_url='login')

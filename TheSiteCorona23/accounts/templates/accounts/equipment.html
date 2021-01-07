@@ -4,14 +4,14 @@
 
 
 
-<h1>Equipment</h1>
+<h1>Medical Equipment</h1>
 
 	<br>
 
 <div class="row">
 	<div class="col-md">
-		<div class="card card-body">
-			<h5>Equipment:</h5>
+		<div class="card card-body" id="general">
+			<h5>Medical Equipment:</h5>
 			<hr>
 			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'add_equip' %}"> <h6> Add Equipment</h6> </a>
 
@@ -19,8 +19,23 @@
 	</div>
 
 	<div class="col-md">
-		<div class="card card-body">
-			<h5>Total Equipment in Hospital:</h5>
+		<div class="card card-body" id="general">
+			<tr>
+				<h5>Amount of Medical Equipment by departments:</h5>
+				<hr>
+			<p>Corona: {{Corona}}</p>
+			<p>Emergency Room: {{EmergencyRoom}} </p>
+			<p>Heart: {{Heart}} </p>
+			<p>ENP: {{ENP}}</p>
+			<p>Stock: {{Stock}} </p>
+
+			</tr>
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body" id="general">
+			<h5>Total Medical Equipment in Hospital:</h5>
 			<hr>
 			<h1 style="text-align: center;padding: 10px">{{total_equipment}}</h1>
 		</div>
@@ -33,10 +48,10 @@
 
 <div class="row">
 	<div class="col-md">
-		<div class="card card-body">
-			<h5>List of Equipment:</h5>
+		<div class="card card-body" id="general">
+			<h5>List of Medical Equipment:</h5>
 		</div>
-		<div class="card card-body">
+		<div class="card card-body" id="general">
 			<table class="table table-sm">
 
 				<tr>
@@ -64,7 +79,9 @@
 	<style>
 	        #logo{
 		}
-
+		#general{
+		background-color: #D3D3D3;
+		}
 		body{
 			background-color: #7CD1E0;
 		}

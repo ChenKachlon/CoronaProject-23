@@ -7,7 +7,7 @@
 <br>
 <div class="row">
 	<div class="col-md">
-		<div class="card card-body">
+		<div class="card card-body" id="general">
 			<h5>Patients:</h5>
 			<hr>
 			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'add_patient' %}"> <h6> Add patient </h6> </a>
@@ -18,7 +18,7 @@
 	</div>
 
 	<div class="col-md">
-		<div class="card card-body">
+		<div class="card card-body" id="general">
 			<tr>
 				<h5>Amount of patients by status:</h5>
 				<hr>
@@ -33,7 +33,7 @@
 	</div>
 
 	<div class="col-md">
-		<div class="card card-body">
+		<div class="card card-body" id="general">
 			<h5>Total Patients in Hospital:</h5>
 			<hr>
 			<h1 style="text-align: center;padding: 10px">{{patients.count}}</h1>
@@ -48,10 +48,10 @@
 <br>
 		<div class="row">
 			<div class="col-md">
-				<div class="card card-body">
+				<div class="card card-body" id="general">
 					<h5>List of patients:</h5>
 				</div>
-				<div class="card card-body">
+				<div class="card card-body" id="general">
 					<table class="table">
 						<tr>
 							<th>Name</th>
@@ -86,10 +86,12 @@
 	<style>
 	        #logo{
 		}
-
+		#general{
+		background-color: #D3D3D3;
+		}
 		body{
 			background-color: #7CD1E0;
 		}
-    </style>
+	</style>
 
 {% endblock %}

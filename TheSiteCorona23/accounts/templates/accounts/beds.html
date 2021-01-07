@@ -9,7 +9,7 @@
 
 <div class="row">
 	<div class="col-md">
-		<div class="card card-body">
+		<div class="card card-body" id="general">
 			<h5>Beds:</h5>
 			<hr>
 			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'add_bed' %}"><h6> Add Bed </h6></a>
@@ -19,7 +19,7 @@
 	</div>
 
 	<div class="col-md">
-		<div class="card card-body">
+		<div class="card card-body" id="general">
 			<tr>
 				<h5>Amount of beds by departments:</h5>
 				<hr>
@@ -32,7 +32,7 @@
 	</div>
 
 	<div class="col-md">
-		<div class="card card-body">
+		<div class="card card-body" id="general">
 			<h5>Total Beds in Hospital:</h5>
 			<hr>
 			<h1 style="text-align: center;padding: 10px">{{beds.count}}</h1>
@@ -49,10 +49,10 @@
 
 <div class="row">
 	<div class="col-md">
-		<div class="card card-body">
+		<div class="card card-body" id="general">
 			<h5>List of Beds:</h5>
 		</div>
-		<div class="card card-body">
+		<div class="card card-body" id="general">
 			<table class="table table-sm">
 
 				<tr>
@@ -80,13 +80,15 @@
 	</div>
 </div>
 
-<style>
+	<style>
 	        #logo{
 		}
-
+		#general{
+		background-color: #D3D3D3;
+		}
 		body{
 			background-color: #7CD1E0;
 		}
-    </style>
+	</style>
 
 {% endblock %}
