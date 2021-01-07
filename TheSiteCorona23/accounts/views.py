@@ -78,7 +78,8 @@ def home(request):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['senior', 'staff', 'help_desk'])
 def departmentPage(request):
-    context = {}
+    dep_patients = 0
+    context = {'dep_patients': dep_patients}
     return render(request, 'accounts/department.html', context)
 
 

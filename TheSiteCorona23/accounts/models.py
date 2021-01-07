@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
+from django.db.models import Model
 
 
 class Bed(models.Model):
@@ -77,20 +78,17 @@ class Concentration(models.Model):
     def __str__(self):
         return str(self.Amount)
 
-#
-# class User(models.Model):
-#     user = models.OneToOneField(User,null=True,on_delete=models.CASCADE)
-#     DEP = (
-#         ('Corona', 'Corona'),
-#         ('ENP', 'ENP'),
-#         ('Heart', 'Heart'),
-#         ('Emergency room', 'Emergency room'),
-#     )
-#     name = models.CharField(max_length=200, null=True)
-#     ID = models.CharField(max_length=200, null=True)
-#     phone = models.CharField(max_length=200, null=True)
-#     date_created = models.DateTimeField(auto_now_add=True, null=True)
-#     objects = models.Manager()
-#
-#     def __str__(self):
-#         return self.name
+
+class Department(models.Model):
+    # user = models.OneToOneField(User,null=True,on_delete=models.CASCADE)
+    DEP = (
+        ('Corona', 'Corona'),
+        ('ENP', 'ENP'),
+        ('Heart', 'Heart'),
+        ('Emergency room', 'Emergency room'),
+    )
+    department = models.CharField(max_length=264, null=True, choices=DEP)
+    objects = models.Manager()
+
+    def __str__(self):
+        return self.name
