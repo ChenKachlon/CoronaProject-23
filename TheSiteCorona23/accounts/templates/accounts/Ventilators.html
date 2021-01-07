@@ -14,7 +14,7 @@
 			<h5>Ventilators:</h5>
 			<hr>
 			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'add_ven' %}"> <h6> Add Ventilator</h6> </a>
-			<a class="btn btn-outline-danger  btn-sm btn-block" href=""> <h6> Delete Ventilator </h6> </a>
+<!--			<a class="btn btn-outline-danger  btn-sm btn-block" href=""> <h6> Delete Ventilator </h6> </a>-->
 
 		</div>
 	</div>
@@ -23,12 +23,10 @@
 		<div class="card card-body">
 			<h5>Amount of Ventilators by departments:</h5>
 			<hr>
-			<p>Corona: </p>
-			<p>Emergency Room: </p>
-			<p>Heart: </p>
-			<p>ENT: </p>
-
-
+			<p>Corona: {{Corona}}</p>
+			<p>Emergency Room: {{EmergencyRoom}} </p>
+			<p>Heart: {{Heart}} </p>
+			<p>ENP: {{ENP}}</p>
 
 		</div>
 	</div>
@@ -68,6 +66,8 @@
 						<td>{{i.date_created}}</td>
 						<td>{{i.room_number}}</td>
 						<td>{{i.ventilator_number}}</td>
+						<td><a class="btn btn-sm btn-danger" href="{%url 'delete_ventilators' i.id%}">Delete</a></td>
+
 					</tr>
 				{% endfor %}
 

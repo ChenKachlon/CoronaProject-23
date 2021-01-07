@@ -13,7 +13,7 @@
 			<h5>Beds:</h5>
 			<hr>
 			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'add_bed' %}"><h6> Add Bed </h6></a>
-			<a class="btn btn-outline-danger  btn-sm btn-block" href=""><h6>Delete Bed</h6> </a>
+<!--			<a class="btn btn-outline-danger  btn-sm btn-block" href=""><h6>Delete Bed</h6> </a>-->
 
 		</div>
 	</div>
@@ -69,6 +69,8 @@
 						<td><a class="btn btn-sm btn-info" href="{%url 'update_beds' i.id%}">Change</a></td>
 						<td>{{i.date_created}}</td>
 						<td>{{i.room_number}}</td>
+						<td><a class="btn btn-sm btn-danger" href="{%url 'delete_bed' i.id%}">Delete</a></td>
+
 					</tr>
 				{% endfor %}
 

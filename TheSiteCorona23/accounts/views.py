@@ -82,28 +82,28 @@ def departmentPage(request):
     return render(request, 'accounts/department.html', context)
 
 
+# @login_required(login_url='login')
+# @allowed_users(allowed_roles=['manger', 'help_desk'])
+# def patients(request):
+#     pat = Patient.objects.all()
+#     return render(request, 'accounts/patients.html', {'patients': pat})
+
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manger', 'help_desk'])
 def patients(request):
-    pat = Patient.objects.all()
-    return render(request, 'accounts/patients.html', {'patients': pat})
-
-
-# @login_required(login_url='login')
-# @allowed_users(allowed_roles=['manger', 'help_desk'])
-# def bedsInDep(request):
-#     temp = Bed.objects.all()
-#     Corona = temp.filter(department='Corona').count()
-#     EmergencyRoom = temp.filter(department='Emergency room').count()
-#     Heart = temp.filter(department='Heart').count()
-#     ENT = temp.filter(department='ENT').count()
-#     context = {
-#         'Corona': Corona,
-#         'EmergencyRoom': EmergencyRoom,
-#         'Heart': Heart,
-#         'ENP': ENT,
-#     }
-#     return render(request, 'accounts/beds.html', context)
+    temp = Patient.objects.all()
+    mildly = temp.filter(status='mildly ill').count()
+    medium = temp.filter(status='medium ill').count()
+    seriously = temp.filter(status='seriously ill').count()
+    dying = temp.filter(status='dying').count()
+    context = {
+        'patients': temp,
+        'mildly': mildly,
+        'medium': medium,
+        'seriously': seriously,
+        'dying': dying,
+        }
+    return render(request, 'accounts/patients.html', context)
 
 
 @login_required(login_url='login')
@@ -123,12 +123,22 @@ def beds(request):
         }
     return render(request, 'accounts/beds.html', context)
 
-
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manger', 'help_desk'])
 def ventilators(request):
-    venn = Ventilator.objects.all()
-    return render(request, 'accounts/Ventilators.html', {'Ventilators': venn})
+    temp = Ventilator.objects.all()
+    Corona = temp.filter(department='Corona').count()
+    EmergencyRoom = temp.filter(department='Emergency room').count()
+    Heart = temp.filter(department='Heart').count()
+    ENP = temp.filter(department='ENP').count()
+    context = {
+        'Ventilators': temp,
+        'Corona': Corona,
+        'EmergencyRoom': EmergencyRoom,
+        'Heart': Heart,
+        'ENP': ENP,
+        }
+    return render(request, 'accounts/ventilators.html', context)
 
 
 @login_required(login_url='login')
@@ -194,6 +204,15 @@ def updateBeds(request,pk):
     context={'form':form}
     return render(request,'accounts/beds_form.html',context)
 
+@login_required(login_url='login')
+def deleteBed(request, pk):
+    bed = Bed.objects.get(id=pk)
+    if request.method == 'POST':
+        bed.delete()
+        return redirect('/')
+    context = {'bed': bed}
+    return render(request, 'accounts/beds_form.html', context)
+
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manger', 'help_desk'])
@@ -206,6 +225,16 @@ def addVen(request):
             return redirect('/')
     context = {'form': form}
     return render(request, 'accounts/ventilators_form.html', context)
+
+@login_required(login_url='login')
+def deleteVen(request, pk):
+    ven = Ventilator.objects.get(id=pk)
+    if request.method == 'POST':
+        ven.delete()
+        return redirect('/')
+    context = {'ven': ven}
+    return render(request, 'accounts/ventilators_form.html', context)
+
 
 # @login_required(login_url='login')
 # def MaxConcentration(request):
