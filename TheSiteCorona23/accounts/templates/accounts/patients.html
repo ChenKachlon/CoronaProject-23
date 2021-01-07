@@ -19,11 +19,12 @@
 	<div class="col-md">
 		<div class="card card-body">
 			<tr>
-				<h5>Amount of patients by departments:</h5>
-				<p>Corona: </p>
-				<p>Emergency Room: </p>
-				<p>Heart: </p>
-				<p>ENT: </p>
+				<h5>Amount of patients by status:</h5>
+				<hr>
+				<p>Mildly ill: {{mildly}} </p>
+				<p>Medium ill: {{medium}}</p>
+				<p>Seriously ill: {{seriously}} </p>
+				<p>Dying: {{dying}}</p>
 
 			</tr>
 		</div>
@@ -66,6 +67,7 @@
 							<th>Status</th>
                             <th>Need for ventilator</th>
 							<th>Date of hospitalization</th>
+
 						</tr>
 						{% for i in patients %}
 						<tr>
@@ -76,6 +78,7 @@
 							<td>{{i.status}}</td>
 							<td>{{i.need_ven}}</td>
 							<td>{{i.date_created}}</td>
+							<td><a class="btn btn-sm btn-danger" href="{%url 'delete_patient' i.id%}">Delete</a></td>
 						</tr>
 						{% endfor %}
 

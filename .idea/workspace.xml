@@ -1,10 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="63d2144f-b239-42aa-890e-a12b5b598cca" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/CoronaProject-23.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CoronaProject-23.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheSiteCorona23/accounts/templates/accounts/Ventilators.html" beforeDir="false" afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/templates/accounts/Ventilators.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheSiteCorona23/accounts/templates/accounts/beds.html" beforeDir="false" afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/templates/accounts/beds.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheSiteCorona23/accounts/templates/accounts/patients.html" beforeDir="false" afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/templates/accounts/patients.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheSiteCorona23/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheSiteCorona23/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheSiteCorona23/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/TheSiteCorona23/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +45,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../yesodotproject-sample" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -52,14 +76,14 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2639" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1609540539544" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1609587700370">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1610016435297">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="2660" y="275" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1609539710953" />
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1609587700370" />
-    <state x="461" y="164" key="SettingsEditor" timestamp="1609587625342">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1610016435297" />
+    <state x="461" y="164" key="SettingsEditor" timestamp="1610016404358">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1609587625342" />
+    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1610016404358" />
   </component>
 </project>
