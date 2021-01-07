@@ -227,6 +227,21 @@ def addVen(request):
     context = {'form': form}
     return render(request, 'accounts/ventilators_form.html', context)
 
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['manger', 'help_desk'])
+def updateVen(request,pk):
+    ven = Ventilator.objects.get(id=pk)
+    form = VenForm(instance=ven)
+    if request.method=='POST':
+        form=VenForm(request.POST,instance=ven)
+        if form.is_valid():
+            form.save()
+            return redirect('/ventilators/')
+    context={'form':form}
+    return render(request,'accounts/ventilators_form.html',context)
+
+
 @login_required(login_url='login')
 def deleteVen(request, pk):
     ven = Ventilator.objects.get(id=pk)
@@ -235,6 +250,20 @@ def deleteVen(request, pk):
         return redirect('/')
     context = {'ven': ven}
     return render(request, 'accounts/ventilators_form.html', context)
+
+
+@login_required(login_url='login')
+def setConcentration(request,pk):
+    Con = Concentration.objects.get(id=pk)
+    form = ConcentrationForm(instance=Con)
+    if request.method == 'POST':
+        form = ConcentrationForm(request.POST, instance=Con)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context = {'form': form}
+    return render(request, 'accounts/concentration_form.html', context)
+
 
 
 # @login_required(login_url='login')
