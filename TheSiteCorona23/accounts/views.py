@@ -60,13 +60,13 @@ def home(request):
     xx = ven.count()
     free_beds = 0
     for i in Bed.objects.all():
-        if (i.name == 'Unknown'):
+        if i.name == 'Unknown':
             free_beds += 1
     concentration = Concentration.objects.all()[0]
     if free_beds < 0:
         free_beds = 'Shortage of beds!!!'
     context = {
-        'concentration':concentration,
+        'concentration': concentration,
         'beds': beds,
         'Ventilator': xx,
         'patients': pati,
@@ -89,27 +89,27 @@ def departmentPage(request):
 #     return render(request, 'accounts/patients.html', {'patients': pat})
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['manger', 'help_desk'])
+@manger_only
 def patients(request):
     temp = Patient.objects.all()
     mildly = temp.filter(status='mildly ill').count()
     medium = temp.filter(status='medium ill').count()
     seriously = temp.filter(status='seriously ill').count()
     dying = temp.filter(status='dying').count()
-    need_ven=temp.filter(need_ven='YES').count()
+    need_ven = temp.filter(need_ven='YES').count()
     context = {
-        'need_ven':need_ven,
+        'need_ven': need_ven,
         'patients': temp,
         'mildly': mildly,
         'medium': medium,
         'seriously': seriously,
         'dying': dying,
-        }
+    }
     return render(request, 'accounts/patients.html', context)
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['manger', 'help_desk'])
+@manger_only
 def beds(request):
     temp = Bed.objects.all()
     Corona = temp.filter(department='Corona').count()
@@ -122,11 +122,12 @@ def beds(request):
         'EmergencyRoom': EmergencyRoom,
         'Heart': Heart,
         'ENP': ENP,
-        }
+    }
     return render(request, 'accounts/beds.html', context)
 
+
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['manger', 'help_desk'])
+@manger_only
 def ventilators(request):
     temp = Ventilator.objects.all()
     Corona = temp.filter(department='Corona').count()
@@ -139,12 +140,12 @@ def ventilators(request):
         'EmergencyRoom': EmergencyRoom,
         'Heart': Heart,
         'ENP': ENP,
-        }
+    }
     return render(request, 'accounts/ventilators.html', context)
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['manger', 'help_desk'])
+@manger_only
 def addPatients(request):
     form = PatientForm()
     if request.method == 'POST':
@@ -157,7 +158,7 @@ def addPatients(request):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['manger', 'help_desk'])
+@manger_only
 def updatePatient(request, pk):
     patient = Patient.objects.get(id=pk)
     form = PatientForm(instance=patient)
@@ -171,6 +172,7 @@ def updatePatient(request, pk):
 
 
 @login_required(login_url='login')
+@manger_only
 def deletePatient(request, pk):
     patient = Patient.objects.get(id=pk)
     if request.method == 'POST':
@@ -181,7 +183,7 @@ def deletePatient(request, pk):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['manger', 'help_desk'])
+@manger_only
 def addBeds(request):
     form = BedForm()
     if request.method == 'POST':
@@ -194,19 +196,21 @@ def addBeds(request):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['manger', 'help_desk'])
-def updateBeds(request,pk):
+@manger_only
+def updateBeds(request, pk):
     bed = Bed.objects.get(id=pk)
     form = BedForm(instance=bed)
-    if request.method=='POST':
-        form=BedForm(request.POST,instance=bed)
+    if request.method == 'POST':
+        form = BedForm(request.POST, instance=bed)
         if form.is_valid():
             form.save()
             return redirect('/beds/')
-    context={'form':form}
-    return render(request,'accounts/beds_form.html',context)
+    context = {'form': form}
+    return render(request, 'accounts/beds_form.html', context)
+
 
 @login_required(login_url='login')
+@manger_only
 def deleteBed(request, pk):
     bed = Bed.objects.get(id=pk)
     if request.method == 'POST':
@@ -217,7 +221,7 @@ def deleteBed(request, pk):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['manger', 'help_desk'])
+@manger_only
 def addVen(request):
     form = VenForm()
     if request.method == 'POST':
@@ -230,20 +234,21 @@ def addVen(request):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['manger', 'help_desk'])
-def updateVen(request,pk):
+@manger_only
+def updateVen(request, pk):
     ven = Ventilator.objects.get(id=pk)
     form = VenForm(instance=ven)
-    if request.method=='POST':
-        form=VenForm(request.POST,instance=ven)
+    if request.method == 'POST':
+        form = VenForm(request.POST, instance=ven)
         if form.is_valid():
             form.save()
             return redirect('/ventilators/')
-    context={'form':form}
-    return render(request,'accounts/ventilators_form.html',context)
+    context = {'form': form}
+    return render(request, 'accounts/ventilators_form.html', context)
 
 
 @login_required(login_url='login')
+@manger_only
 def deleteVen(request, pk):
     ven = Ventilator.objects.get(id=pk)
     if request.method == 'POST':
@@ -254,7 +259,8 @@ def deleteVen(request, pk):
 
 
 @login_required(login_url='login')
-def setConcentration(request,pk):
+@allowed_users(allowed_roles=['manger', 'senior', 'staff', 'help_desk'])
+def setConcentration(request, pk):
     Con = Concentration.objects.get(id=pk)
     form = ConcentrationForm(instance=Con)
     if request.method == 'POST':
@@ -265,17 +271,21 @@ def setConcentration(request,pk):
     context = {'form': form}
     return render(request, 'accounts/concentration_form.html', context)
 
+
 @login_required(login_url='login')
+@manger_only
 def equipmentPage(request):
     equipment = Equipment.objects.all()
     total_equipment = Equipment.objects.all().count()
     context = {
-        'total_equipment':total_equipment,
+        'total_equipment': total_equipment,
         'equipment': equipment,
     }
     return render(request, 'accounts/equipment.html', context)
 
+
 @login_required(login_url='login')
+@manger_only
 def addEquipment(request):
     form = EquipForm
     if request.method == 'POST':
@@ -288,19 +298,21 @@ def addEquipment(request):
 
 
 @login_required(login_url='login')
-def updateEquipment(request,pk):
+@manger_only
+def updateEquipment(request, pk):
     eq = Equipment.objects.get(id=pk)
     form = EquipForm(instance=eq)
-    if request.method=='POST':
-        form=EquipForm(request.POST,instance=eq)
+    if request.method == 'POST':
+        form = EquipForm(request.POST, instance=eq)
         if form.is_valid():
             form.save()
             return redirect('/equipment/')
-    context={'form':form}
-    return render(request,'accounts/equipment_form.html',context)
+    context = {'form': form}
+    return render(request, 'accounts/equipment_form.html', context)
 
 
 @login_required(login_url='login')
+@manger_only
 def deleteEquipment(request, pk):
     eq = Equipment.objects.get(id=pk)
     if request.method == 'POST':
@@ -311,6 +323,7 @@ def deleteEquipment(request, pk):
 
 
 @login_required(login_url='login')
+@manger_only
 def createRequest(request):
     form = ReqForm()
     if request.method == 'POST':
@@ -320,9 +333,6 @@ def createRequest(request):
             return redirect('/')
     context = {'form': form}
     return render(request, 'accounts/request_form.html', context)
-
-
-
 
 # @login_required(login_url='login')
 # def MaxConcentration(request):
@@ -336,4 +346,3 @@ def createRequest(request):
 #     #         return redirect('/')
 #     # context={'form':form}
 #     return x
-# def staff(request):
