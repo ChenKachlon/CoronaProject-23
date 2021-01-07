@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
@@ -8,6 +8,7 @@ from django.contrib import messages
 from .models import *
 from .forms import *
 from .decorators import *
+
 
 # Create your views here.
 
@@ -52,21 +53,21 @@ def logoutUser(request):
 @login_required(login_url='login')
 @manger_only
 def home(request):
-    pati=Patient.objects.all()
-    bedi=Bed.objects.all()
-    ven=Ventilator.objects.all()
-    beds=bedi.count()
-    xx=ven.count()
-    free_beds=beds-pati.count()
-    if(free_beds<0):
-        free_beds='Shortage of beds!!!'
+    pati = Patient.objects.all()
+    bedi = Bed.objects.all()
+    ven = Ventilator.objects.all()
+    beds = bedi.count()
+    xx = ven.count()
+    free_beds = beds - pati.count()
+    if free_beds < 0:
+        free_beds = 'Shortage of beds!!!'
     context = {
-             'beds': beds,
-             'Ventilator': xx,
-             'patients': pati,
-             'freeBeds': free_beds
+        'beds': beds,
+        'Ventilator': xx,
+        'patients': pati,
+        'freeBeds': free_beds
     }
-    return render(request,'accounts/dashboard.html',context)
+    return render(request, 'accounts/dashboard.html', context)
 
 
 @login_required(login_url='login')
@@ -80,14 +81,14 @@ def departmentPage(request):
 @allowed_users(allowed_roles=['manger', 'help_desk'])
 def patients(request):
     pat = Patient.objects.all()
-    return render(request, 'accounts/patients.html', {'patients':pat})
+    return render(request, 'accounts/patients.html', {'patients': pat})
 
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manger', 'help_desk'])
 def bedsInDep(request):
-    temp=Bed.objects.get('Corona')
-    CoronaBed=temp.count
+    temp = Bed.objects.get('Corona')
+    CoronaBed = temp.count
     temp1 = Bed.objects.get('Emergency Room')
     Emergency_Room_Bed = temp1.count
     temp2 = Bed.objects.get('Heart')
@@ -95,91 +96,89 @@ def bedsInDep(request):
     temp3 = Bed.objects.get('ENP')
     ENTbed = temp3.count
     context = {
-             'Corona': CoronaBed,
-             'Emergency Room': Emergency_Room_Bed,
-             'Heart': HeartBed,
-             'ENP': ENTbed
+        'Corona': CoronaBed,
+        'Emergency Room': Emergency_Room_Bed,
+        'Heart': HeartBed,
+        'ENP': ENTbed
     }
     return render(request, 'accounts/beds.html', context)
 
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manger', 'help_desk'])
-def beds(request) :
+def beds(request):
     bedd = Bed.objects.all()
-    return render(request,'accounts/beds.html',{'beds': bedd })
+    return render(request, 'accounts/beds.html', {'beds': bedd})
 
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manger', 'help_desk'])
-def ventilators(request) :
+def ventilators(request):
     venn = Ventilator.objects.all()
-    return render(request,'accounts/Ventilators.html',{'Ventilators': venn})
+    return render(request, 'accounts/Ventilators.html', {'Ventilators': venn})
 
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manger', 'help_desk'])
 def addPatients(request):
-    form=PatientForm()
-    if request.method=='POST':
-        form=PatientForm(request.POST)
+    form = PatientForm()
+    if request.method == 'POST':
+        form = PatientForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/')
-    context={'form':form}
-    return render(request,'accounts/patients_form.html',context)
+    context = {'form': form}
+    return render(request, 'accounts/patients_form.html', context)
 
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manger', 'help_desk'])
-def updatePatient(request,pk):
+def updatePatient(request, pk):
     patient = Patient.objects.get(id=pk)
     form = PatientForm(instance=patient)
-    if request.method=='POST':
-        form=PatientForm(request.POST,instance=patient)
+    if request.method == 'POST':
+        form = PatientForm(request.POST, instance=patient)
         if form.is_valid():
             form.save()
             return redirect('/')
-    context={'form':form}
-    return render(request,'accounts/patients_form.html',context)
+    context = {'form': form}
+    return render(request, 'accounts/patients_form.html', context)
+
 
 @login_required(login_url='login')
-def deletePatient(request,pk):
+def deletePatient(request, pk):
     patient = Patient.objects.get(id=pk)
-    if request.method=='POST':
+    if request.method == 'POST':
         patient.delete()
         return redirect('/')
-    context = {'patient':patient}
-    return render(request,'accounts/delete_patient.html',context)
-
+    context = {'patient': patient}
+    return render(request, 'accounts/delete_patient.html', context)
 
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manger', 'help_desk'])
 def addBeds(request):
-    form=BedForm()
-    if request.method=='POST':
-        form=BedForm(request.POST)
+    form = BedForm()
+    if request.method == 'POST':
+        form = BedForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/')
-    context={'form':form}
-    return render(request,'accounts/beds_form.html',context)
+    context = {'form': form}
+    return render(request, 'accounts/beds_form.html', context)
 
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manger', 'help_desk'])
 def addVen(request):
-    form=VenForm()
-    if request.method=='POST':
-        form=VenForm(request.POST)
+    form = VenForm()
+    if request.method == 'POST':
+        form = VenForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/')
-    context={'form':form}
-    return render(request,'accounts/ventilators_form.html',context)
-
-
+    context = {'form': form}
+    return render(request, 'accounts/ventilators_form.html', context)
 
 # @login_required(login_url='login')
 # def MaxConcentration(request):
