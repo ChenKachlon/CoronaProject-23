@@ -15,17 +15,23 @@ from .decorators import *
 
 @unauthenticated_user
 def registerPage(request):
-    form = CreateUserForm()
     if request.method == 'POST':
-        form = CreateUserForm(request.POST)
-        if form.is_valid():
-            user = form.save()
+        user_form = CreateUserForm(request.POST)
+        employee_form = EmployeeForm(request.POST)
+        if user_form.is_valid() and employee_form.is_valid():
+            user = user_form.save()
+            employee = employee_form.save(commit=False)
             group = Group.objects.get(name='staff')
             user.groups.add(group)
-            username = form.cleaned_data.get('username')
+            username = user_form.cleaned_data.get('username')
+            employee.user = user
+            employee.save()
             messages.success(request, 'Account was created for ' + username)
             return redirect('login')
-    context = {'form': form}
+    else:
+        user_form = UserCreationForm()
+        employee_form = EmployeeForm()
+    context = {'user_form': user_form, 'employee_form': employee_form}
     return render(request, 'accounts/register.html', context)
 
 
@@ -283,20 +289,15 @@ def equipmentPage(request):
     ENP = equipment.filter(department='ENP').count()
     Stock = equipment.filter(department='Stock').count()
     context = {
-        'equipment':equipment,
-        'total_equipment':total_equipment,
+        'equipment': equipment,
+        'total_equipment': total_equipment,
         'Corona': Corona,
         'EmergencyRoom': EmergencyRoom,
         'Heart': Heart,
         'ENP': ENP,
-        'Stock':Stock,
+        'Stock': Stock,
     }
     return render(request, 'accounts/equipment.html', context)
-
-
-
-
-
 
 
 @login_required(login_url='login')

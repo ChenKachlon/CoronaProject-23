@@ -35,4 +35,3 @@ def manger_only(view_func):
         else:
             return redirect('department')
     return wrapper_func
-

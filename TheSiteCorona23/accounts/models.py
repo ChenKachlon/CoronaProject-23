@@ -110,13 +110,14 @@ class RequestForm(models.Model):
 
 
 class Department(models.Model):
+    # department = models.CharField(max_length=200, null=True)
     DEP = (
         ('Corona', 'Corona'),
         ('ENP', 'ENP'),
         ('Heart', 'Heart'),
         ('Emergency room', 'Emergency room'),
     )
-    department_name = models.CharField(max_length=200, null=True, choices=DEP, default='Corona')
+    department = models.CharField(max_length=200, null=True, choices=DEP, default='Corona')
     objects = models.Manager()
 
     def __str__(self):

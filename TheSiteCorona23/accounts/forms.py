@@ -42,20 +42,12 @@ class ReqForm(ModelForm):
 
 
 class CreateUserForm(UserCreationForm):
-    # Corona = forms.BooleanField(label='Corona')
-    # ENP = forms.BooleanField(label='ENP')
-    # Heart = forms.BooleanField(label='Heart')
-    # Emergency_room = forms.BooleanField(label='Emergency room')
-    #
-    # if not Corona and not ENP and not Heart and not Emergency_room:
-    #     raise forms.ValidationError("Must choose department")
-    #
-    # dep_select = forms.ChoiceField(
-    #     widget=forms.RadioSelect,
-    #     label="Choose department",
-    #     choices=(('Corona', 'Corona'), ('ENP', 'ENP'), ('Heart', 'Heart'), ('Emergency_room', 'Emergency_room'))
-    # )
-
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2',]
+        fields = ['username', 'password1', 'password2', ]
+
+
+class EmployeeForm(ModelForm):
+    class Meta:
+        model = Department
+        fields = ['department', ]
