@@ -22,6 +22,11 @@ class VenForm(ModelForm):
         model = Ventilator
         fields = '__all__'
 
+class ConcentrationForm(ModelForm):
+    class Meta:
+        model = Concentration
+        fields = '__all__'
+
 
 class CreateUserForm(UserCreationForm):
     class Meta:
