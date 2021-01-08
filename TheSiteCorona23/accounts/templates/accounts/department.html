@@ -5,6 +5,75 @@
 <h3>{{department}} Department Page</h3>
 
 </div>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body" id="general">
+			<h5>List of Ventilators:</h5>
+		</div>
+		<div class="card card-body" id="general">
+			<table class="table table-sm">
+
+				<tr>
+					<th>Name of patient</th>
+					<th>Department</th>
+					<th>Date of hospitalization</th>
+					<th>Room number</th>
+					<th>Ventilator number</th>
+				</tr>
+				{% for i in Ventilators %}
+				{% if department == i.department %}
+
+					<tr>
+						<td>{{i.name}}</td>
+						<td>{{department}}</td>
+						<td>{{i.date_created}}</td>
+						<td>{{i.room_number}}</td>
+						<td>{{i.ventilator_number}}</td>
+
+					</tr>
+				{% endif %}
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+<br>
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body" id="general">
+			<h5>List of Beds:</h5>
+		</div>
+		<div class="card card-body" id="general">
+			<table class="table table-sm">
+
+				<tr>
+					<th>Name of patient</th>
+					<th>Department</th>
+					<th>Date of hospitalization</th>
+					<th>Room number</th>
+				</tr>
+				{% for i in Beds %}
+				{% if department == i.department %}
+					<tr>
+						<td>{{i.name}}</td>
+						<td>{{department}}</td>
+						<td>{{i.date_created}}</td>
+						<td>{{i.room_number}}</td>
+
+					</tr>
+				{% endif %}
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+<br>
 <br>
 		<div class="row">
 			<div class="col-md">
@@ -25,13 +94,12 @@
 
 						</tr>
 						{% for i in patients %}
-<!--                        בלי הif מופיעים כל החולים עם הif לא מופיעים חולים בכלל -->
                         {% if department == i.department %}
 						<tr>
 							<td>{{i.name}}</td>
 							<td>{{i.ID}}</td>
 							<td>{{i.phone}}</td>
-							{{department}}
+							<td>{{department}}</td>
 							<td>{{i.status}}</td>
 							<td>{{i.need_ven}}</td>
 							<td>{{i.date_created}}</td>

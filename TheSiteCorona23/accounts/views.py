@@ -84,7 +84,6 @@ def home(request):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['senior', 'staff', 'help_desk'])
 def departmentPage(request, pk_dep):
     dep = Department.objects.get(id=pk_dep)
     dep_name = dep.department
@@ -102,9 +101,9 @@ def departmentPage(request, pk_dep):
     for i in all_ven:
         if i.department == dep_name:
             dep_ven += 1
-    context = {'department': dep_name, 'beds': dep_beds,
+    context = {'department': dep_name, 'dep_beds': dep_beds, 'Beds': all_beds,
                'Ventilator': dep_ven, 'patients': patient,
-               'freeBeds': free_beds, 'pk_dep': pk_dep}
+               'freeBeds': free_beds, 'Ventilators': all_ven}
     return render(request, 'accounts/department.html', context)
 
 
