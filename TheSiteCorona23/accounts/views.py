@@ -9,12 +9,11 @@ from .models import *
 from .forms import *
 from .decorators import *
 
-
-# Create your views here.
-
+# Create our views here.
 
 @unauthenticated_user
 def registerPage(request):
+    """Website registration function and reload him"""
     if request.method == 'POST':
         user_form = CreateUserForm(request.POST)
         employee_form = EmployeeForm(request.POST)
@@ -37,6 +36,7 @@ def registerPage(request):
 
 @unauthenticated_user
 def loginPage(request):
+    """Website login function and reload him"""
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -52,6 +52,7 @@ def loginPage(request):
 
 @login_required(login_url='login')
 def logoutUser(request):
+    """Website logout function"""
     logout(request)
     return redirect('login')
 
@@ -59,6 +60,7 @@ def logoutUser(request):
 @login_required(login_url='login')
 @manger_only
 def home(request):
+    """function that fill the fields of home page- in dashboard part of the website,and reload him """
     dep = Department.objects.all()
     pati = Patient.objects.all()
     bedi = Bed.objects.all()
@@ -111,6 +113,7 @@ def departmentPage(request, pk_dep):
 @login_required(login_url='login')
 @manger_only
 def patients(request):
+    """function that fill the fields of patients page of the website,and reload him"""
     temp = Patient.objects.all()
     mildly = temp.filter(status='mildly ill').count()
     medium = temp.filter(status='medium ill').count()
@@ -131,6 +134,7 @@ def patients(request):
 @login_required(login_url='login')
 @manger_only
 def beds(request):
+    """function that fill the fields of beds page of the website,and reload him"""
     temp = Bed.objects.all()
     Corona = temp.filter(department='Corona').count()
     EmergencyRoom = temp.filter(department='Emergency room').count()
@@ -149,6 +153,7 @@ def beds(request):
 @login_required(login_url='login')
 @manger_only
 def ventilators(request):
+    """function that fill the fields of ventilators page of the website,and reload him"""
     temp = Ventilator.objects.all()
     Corona = temp.filter(department='Corona').count()
     EmergencyRoom = temp.filter(department='Emergency room').count()
@@ -166,6 +171,7 @@ def ventilators(request):
 
 @login_required(login_url='login')
 def addPatients(request):
+    """function that add a new patient to patients page/home page of the website and update the database,and reload the page"""
     form = PatientForm()
     if request.method == 'POST':
         form = PatientForm(request.POST)
@@ -179,6 +185,7 @@ def addPatients(request):
 @login_required(login_url='login')
 @manger_only
 def updatePatient(request, pk):
+    """function that update a status of exist patient and update the database,and reload the page"""
     patient = Patient.objects.get(id=pk)
     form = PatientForm(instance=patient)
     if request.method == 'POST':
@@ -193,6 +200,7 @@ def updatePatient(request, pk):
 @login_required(login_url='login')
 @manger_only
 def deletePatient(request, pk):
+    """function that remove patient from patients page/home page of the website and update the database,and reload the page"""
     patient = Patient.objects.get(id=pk)
     if request.method == 'POST':
         patient.delete()
@@ -204,6 +212,7 @@ def deletePatient(request, pk):
 @login_required(login_url='login')
 @manger_only
 def addBeds(request):
+    """function that add a new bed to beds page of the website and update the database,and reload the page """
     form = BedForm()
     if request.method == 'POST':
         form = BedForm(request.POST)
@@ -217,6 +226,7 @@ def addBeds(request):
 @login_required(login_url='login')
 @manger_only
 def updateBeds(request, pk):
+    """function that update a fields of exist bed and update the database,and reload the page """
     bed = Bed.objects.get(id=pk)
     form = BedForm(instance=bed)
     if request.method == 'POST':
@@ -231,6 +241,7 @@ def updateBeds(request, pk):
 @login_required(login_url='login')
 @manger_only
 def deleteBed(request, pk):
+    """function that remove bed from beds page of the website and update the database,and reload the page """
     bed = Bed.objects.get(id=pk)
     if request.method == 'POST':
         bed.delete()
@@ -242,6 +253,7 @@ def deleteBed(request, pk):
 @login_required(login_url='login')
 @manger_only
 def addVen(request):
+    """function that add a new ventilator to ventilators page of the website and update the database,and reload the page """
     form = VenForm()
     if request.method == 'POST':
         form = VenForm(request.POST)
@@ -255,6 +267,7 @@ def addVen(request):
 @login_required(login_url='login')
 @manger_only
 def updateVen(request, pk):
+    """function that update a fields of exist ventilator and update the database,and reload the page """
     ven = Ventilator.objects.get(id=pk)
     form = VenForm(instance=ven)
     if request.method == 'POST':
@@ -269,6 +282,7 @@ def updateVen(request, pk):
 @login_required(login_url='login')
 @manger_only
 def deleteVen(request, pk):
+    """function that remove ventilator from ventilators page of the website and update the database,and reload the page """
     ven = Ventilator.objects.get(id=pk)
     if request.method == 'POST':
         ven.delete()
@@ -280,6 +294,7 @@ def deleteVen(request, pk):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manger', 'senior', 'staff', 'help_desk'])
 def setConcentration(request, pk):
+    """A function that determines the maximum population in the hospital and in each department in the hospital and update the database,and reload the page """
     Con = Concentration.objects.get(name=pk)
     form = ConcentrationForm(instance=Con)
     if request.method == 'POST':
@@ -295,6 +310,7 @@ def setConcentration(request, pk):
 @login_required(login_url='login')
 @manger_only
 def equipmentPage(request):
+    """function that fill the fields of equipment page of the website and update the database,and reload the page """
     equipment = Equipment.objects.all()
     total_equipment = Equipment.objects.all().count()
     Corona = equipment.filter(department='Corona').count()
@@ -317,6 +333,7 @@ def equipmentPage(request):
 @login_required(login_url='login')
 @manger_only
 def addEquipment(request):
+    """function that add a new medical equipment to equipment page of the website and update the database,and reload the page """
     form = EquipForm
     if request.method == 'POST':
         form = EquipForm(request.POST)
@@ -330,6 +347,7 @@ def addEquipment(request):
 @login_required(login_url='login')
 @manger_only
 def updateEquipment(request, pk):
+    """function that update a fields of exist equipment and update the database,and reload the page """
     eq = Equipment.objects.get(id=pk)
     form = EquipForm(instance=eq)
     if request.method == 'POST':
@@ -344,6 +362,7 @@ def updateEquipment(request, pk):
 @login_required(login_url='login')
 @manger_only
 def deleteEquipment(request, pk):
+    """function that remove equipment from equipment page of the website and update the database,and reload the page """
     eq = Equipment.objects.get(id=pk)
     if request.method == 'POST':
         eq.delete()
@@ -355,6 +374,7 @@ def deleteEquipment(request, pk):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['senior', 'staff', 'help_desk'])
 def createRequest(request):
+    """a function that create a new request and update the database,and reload the page"""
     form = ReqForm()
     if request.method == 'POST':
         form = ReqForm(request.POST)
@@ -368,6 +388,7 @@ def createRequest(request):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['senior', 'staff', 'help_desk'])
 def createReport(request):
+    """a function that create a new report and update the database,and reload the page"""
     form = RepForm
     if request.method == 'POST':
         form = RepForm(request.POST)
@@ -381,6 +402,7 @@ def createReport(request):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manager', 'help_desk'])
 def ReqANDRep(request):
+    """function that fill the fields of requests&reports page of the website,and reload him """
     req = RequestForm.objects.all()
     rep = ReportForm.objects.all()
     context = {'requests':req,'reports':rep}
@@ -389,6 +411,7 @@ def ReqANDRep(request):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manager', 'help_desk'])
 def approveRequest(request, pk):
+    """a function that approve a exist request and update the database,and reload the page"""
     req = RequestForm.objects.get(id=pk)
     obj = req.request
     if request.method == 'POST':
@@ -402,6 +425,7 @@ def approveRequest(request, pk):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manager', 'help_desk'])
 def rejectRequest(request, pk):
+    """a function that reject a exist request and update the database,and reload the page"""
     req = RequestForm.objects.get(id=pk)
     if request.method == 'POST':
         req.delete()
@@ -412,6 +436,7 @@ def rejectRequest(request, pk):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manager', 'help_desk'])
 def deleteReport(request, pk):
+    """a function that delete a exist report and update the database,and reload the page"""
     rep = ReportForm.objects.get(id=pk)
     if request.method == 'POST':
         rep.delete()
@@ -419,17 +444,3 @@ def deleteReport(request, pk):
     context = {'rep': rep}
     return render(request, 'accounts/report_form.html', context)
 
-
-
-# @login_required(login_url='login')
-# def MaxConcentration(request):
-#     # print('update the max concentration')
-#     x = input()
-#     # form=VenForm()
-#     # if request.method=='POST':
-#     # #     form=VenForm(request.POST)
-#     # #     if form.is_valid():
-#     #          form.save()
-#     #         return redirect('/')
-#     # context={'form':form}
-#     return x
