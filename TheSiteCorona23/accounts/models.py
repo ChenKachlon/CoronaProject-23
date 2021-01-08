@@ -62,7 +62,7 @@ class Patient(models.Model):
     name = models.CharField(max_length=200, null=True)
     ID = models.CharField(max_length=200, null=True)
     phone = models.CharField(max_length=200, null=True)
-    department = models.CharField(max_length=200, null=True, choices=DEP)
+    # department = models.CharField(choices=DEP, default=None)
     status = models.CharField(max_length=200, null=True, choices=STATUS)
     need_ven = models.CharField(max_length=200, null=True, choices=VEN)
     date_created = models.DateTimeField(auto_now_add=True, null=True)

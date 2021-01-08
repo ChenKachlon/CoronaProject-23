@@ -167,7 +167,6 @@ def addPatients(request):
     form = PatientForm()
     if request.method == 'POST':
         form = PatientForm(request.POST)
-        form.department = 'Corona'
         if form.is_valid():
             form.save()
             return redirect('/patients/')
