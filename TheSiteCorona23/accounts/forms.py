@@ -41,6 +41,12 @@ class ReqForm(ModelForm):
         fields = '__all__'
 
 
+class RepForm(ModelForm):
+    class Meta:
+        model = ReportForm
+        fields = '__all__'
+
+
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User

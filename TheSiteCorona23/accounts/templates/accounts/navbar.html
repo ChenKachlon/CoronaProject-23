@@ -18,16 +18,19 @@
     <ul class="navbar-nav">
       {% if request.user.is_staff %}
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'patients' %}"> <h3> Patients</h3> </a>
+        <a class="nav-link" href="{% url 'patients' %}"> <h4> Patients</h4> </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'beds' %}"> <h3> Beds </h3></a>
+        <a class="nav-link" href="{% url 'beds' %}"> <h4> Beds </h4></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'ventilators' %}"> <h3>Ventilators</h3></a>
+        <a class="nav-link" href="{% url 'ventilators' %}"> <h4>Ventilators</h4></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'equipment' %}"> <h3>Medical Equipment</h3></a>
+        <a class="nav-link" href="{% url 'equipment' %}"> <h4>Medical Equipment</h4></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'request_report' %}"> <h4>Requests & Reports</h4></a>
       </li>
       {% endif %}
     </ul>

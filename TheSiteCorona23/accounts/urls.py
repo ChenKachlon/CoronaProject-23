@@ -27,5 +27,10 @@ urlpatterns = [
     path('update_equip/<str:pk>', views.updateEquipment, name='update_equip'),
     path('delete_equipment/<str:pk>', views.deleteEquipment, name='delete_equipment'),
     path('create_request/', views.createRequest, name='create_request'),
+    path('create_report/', views.createReport, name='create_report'),
+    path('request_report/', views.ReqANDRep, name='request_report'),
+    path('approve_request/<str:pk>', views.approveRequest, name='approve_request'),
+    path('reject_request/<str:pk>', views.rejectRequest, name='reject_request'),
+    path('delete_report/<str:pk>', views.deleteReport, name='delete_report'),
     # path('staff/<str:pk>/', views.staff, name='staff_page'),
 ]

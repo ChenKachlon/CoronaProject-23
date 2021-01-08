@@ -74,6 +74,7 @@ class Patient(models.Model):
 
 
 class Concentration(models.Model):
+    name = models.CharField(max_length=200, null=True)
     Amount = models.IntegerField(null=True)
     objects = models.Manager()
 
@@ -105,6 +106,31 @@ class RequestForm(models.Model):
     }
     name = models.CharField(max_length=264, null=True)
     request = models.CharField(max_length=264, null=True, choices=OPTION)
+    description = models.TextField(max_length=264, null=True)
+    date_registered = models.DateTimeField(auto_now_add=True, null=True)
+    objects = models.Manager()
+
+    def __str__(self):
+        return self.name
+
+
+class ReportForm(models.Model):
+    OPTION = {
+        ('Amount of patient', 'Amount of patient'),
+        ('Amount of equipment', 'Amount of equipment'),
+        ('Usage of equipment','Usage of equipment'),
+        ('Treatment', 'Treatment'),
+        ('General', 'General'),
+    }
+    DEP = (
+        ('Corona', 'Corona'),
+        ('ENP', 'ENP'),
+        ('Heart', 'Heart'),
+        ('Emergency room', 'Emergency room'),
+    )
+    name = models.CharField(max_length=264, null=True)
+    choice = models.CharField(max_length=264, null=True, choices=OPTION)
+    department = models.CharField(max_length=264, null=True, choices=DEP)
     description = models.TextField(max_length=264, null=True)
     date_registered = models.DateTimeField(auto_now_add=True, null=True)
     objects = models.Manager()

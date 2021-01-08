@@ -8,4 +8,6 @@ admin.site.register(Ventilator)
 admin.site.register(Concentration)
 admin.site.register(Equipment)
 admin.site.register(RequestForm)
+admin.site.register(ReportForm)
 admin.site.register(Department)
+

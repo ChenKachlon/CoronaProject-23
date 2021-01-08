@@ -1,0 +1,87 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+
+<h1>Requests & Reports</h1>
+<br>
+<div class="row">
+</div>
+<br>
+		<div class="row">
+			<div class="col-md">
+				<div class="card card-body" id="general">
+					<h5>List of Requests:</h5>
+				</div>
+				<div class="card card-body" id="general">
+					<table class="table table-sm">
+						<tr>
+							<th>Name</th>
+							<th>Request</th>
+							<th>Description</th>
+							<th>Date of registered</th>
+							<th>Action</th>
+
+						</tr>
+						{% for i in requests %}
+						<tr>
+							<td>{{i.name}}</td>
+							<td>{{i.request}}</td>
+							<td>{{i.description}}</td>
+							<td>{{i.date_registered}}</td>
+                            <td><a class="btn btn-sm btn-info" href="{%url 'approve_request' i.id%}">Approve</a>
+							<a class="btn btn-sm btn-danger" href="{%url 'reject_request' i.id%}">Reject</a></td>
+						</tr>
+						{% endfor %}
+
+					</table>
+				</div>
+			</div>
+		</div>
+		<br>
+		<p></p>
+		<div class="row">
+			<div class="col-md">
+				<div class="card card-body" id="general">
+					<h5>List of Reports:</h5>
+				</div>
+				<div class="card card-body" id="general">
+					<table class="table table-sm">
+						<tr>
+							<th>Name</th>
+							<th>Choice</th>
+							<th>Department</th>
+							<th>Description</th>
+							<th>Date of registered</th>
+							<th>Action</th>
+
+						</tr>
+						{% for i in reports %}
+						<tr>
+							<td>{{i.name}}</td>
+							<td>{{i.choice}}</td>
+							<td>{{i.department}}</td>
+							<td>{{i.description}}</td>
+							<td>{{i.date_registered}}</td>
+							<td><a class="btn btn-sm btn-danger" href="{%url 'delete_report' i.id%}">Delete</a></td>
+						</tr>
+						{% endfor %}
+
+					</table>
+				</div>
+			</div>
+
+		</div>
+
+	<style>
+	        #logo{
+		}
+		#general{
+		background-color: #D3D3D3;
+		}
+		body{
+			background-color: #7CD1E0;
+		}
+	</style>
+
+{% endblock %}

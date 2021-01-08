@@ -87,6 +87,7 @@ def home(request):
 def departmentPage(request, pk_dep):
     dep = Department.objects.get(id=pk_dep)
     dep_name = dep.department
+    concentration = Concentration.objects.get(name=dep_name)
     patient = Patient.objects.all()
     all_beds = Bed.objects.all()
     all_ven = Ventilator.objects.all()
@@ -102,7 +103,7 @@ def departmentPage(request, pk_dep):
         if i.department == dep_name:
             dep_ven += 1
     context = {'department': dep_name, 'dep_beds': dep_beds, 'Beds': all_beds,
-               'Ventilator': dep_ven, 'patients': patient,
+               'Ventilator': dep_ven, 'patients': patient,'concentration':concentration,
                'freeBeds': free_beds, 'Ventilators': all_ven}
     return render(request, 'accounts/department.html', context)
 
@@ -279,7 +280,7 @@ def deleteVen(request, pk):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manger', 'senior', 'staff', 'help_desk'])
 def setConcentration(request, pk):
-    Con = Concentration.objects.get(id=pk)
+    Con = Concentration.objects.get(name=pk)
     form = ConcentrationForm(instance=Con)
     if request.method == 'POST':
         form = ConcentrationForm(request.POST, instance=Con)
@@ -288,6 +289,7 @@ def setConcentration(request, pk):
             return redirect('/')
     context = {'form': form}
     return render(request, 'accounts/concentration_form.html', context)
+
 
 
 @login_required(login_url='login')
@@ -361,6 +363,63 @@ def createRequest(request):
             return redirect('/')
     context = {'form': form}
     return render(request, 'accounts/request_form.html', context)
+
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['senior', 'staff', 'help_desk'])
+def createReport(request):
+    form = RepForm
+    if request.method == 'POST':
+        form = RepForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context = {'form': form}
+    return render(request, 'accounts/report_form.html', context)
+
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['manager', 'help_desk'])
+def ReqANDRep(request):
+    req = RequestForm.objects.all()
+    rep = ReportForm.objects.all()
+    context = {'requests':req,'reports':rep}
+    return render(request, 'accounts/request&report.html', context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['manager', 'help_desk'])
+def approveRequest(request, pk):
+    req = RequestForm.objects.get(id=pk)
+    obj = req.request
+    if request.method == 'POST':
+        req.delete()
+        if obj == 'Add Beds':
+            return redirect('/beds/')
+        return redirect('/equipment/')
+    context = {'req': req}
+    return render(request, 'accounts/request_form.html', context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['manager', 'help_desk'])
+def rejectRequest(request, pk):
+    req = RequestForm.objects.get(id=pk)
+    if request.method == 'POST':
+        req.delete()
+        return redirect('/')
+    context = {'req': req}
+    return render(request, 'accounts/request_form.html', context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['manager', 'help_desk'])
+def deleteReport(request, pk):
+    rep = ReportForm.objects.get(id=pk)
+    if request.method == 'POST':
+        rep.delete()
+        return redirect('/')
+    context = {'rep': rep}
+    return render(request, 'accounts/report_form.html', context)
+
+
 
 # @login_required(login_url='login')
 # def MaxConcentration(request):
