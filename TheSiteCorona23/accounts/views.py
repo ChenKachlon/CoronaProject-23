@@ -59,6 +59,7 @@ def logoutUser(request):
 @login_required(login_url='login')
 @manger_only
 def home(request):
+    dep = Department.objects.all()
     pati = Patient.objects.all()
     bedi = Bed.objects.all()
     ven = Ventilator.objects.all()
@@ -76,7 +77,8 @@ def home(request):
         'beds': beds,
         'Ventilator': xx,
         'patients': pati,
-        'freeBeds': free_beds
+        'freeBeds': free_beds,
+        'departments': dep
     }
     return render(request, 'accounts/dashboard.html', context)
 
@@ -102,7 +104,7 @@ def departmentPage(request, pk_dep):
             dep_ven += 1
     context = {'department': dep_name, 'beds': dep_beds,
                'Ventilator': dep_ven, 'patients': patient,
-               'freeBeds': free_beds}
+               'freeBeds': free_beds, 'pk_dep': pk_dep}
     return render(request, 'accounts/department.html', context)
 
 

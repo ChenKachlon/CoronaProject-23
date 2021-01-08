@@ -39,7 +39,6 @@
 	</div>
 </div>
 
-
 	<div class="col">
 		<div class="col-md">
 			<div class="card text-center text-white  mb-3" id="total-patients">
@@ -54,7 +53,7 @@
 			</div>
 		</div>
 	</div>
-
+<div class="row">
 	<div class="col">
 		<div class="col-md">
 			<div class="card text-center text-white  mb-3" id="total-patients">
@@ -67,3 +66,25 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="total-free">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Departments on hospital</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3>					</h3>
+
+						{% for i in departments %}
+						<tr>
+							<h5 class="card-title">
+								<a href="{% url 'department' i.id %}"><h3>{{i.department}}</h3></a>
+							</h5>
+						</tr>
+						{% endfor %}
+			  	</div>
+			</div>
+		</div>
+	</div>
+</div>
