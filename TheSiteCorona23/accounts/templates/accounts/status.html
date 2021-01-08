@@ -79,7 +79,7 @@
 						{% for i in departments %}
 						<tr>
 							<h5 class="card-title">
-								<a href="{% url 'department' i.id %}"><h3>{{i.department}}</h3></a>
+								<td><a class="btn btn-sm btn-info" href="{% url 'department' i.id %}"><h3>{{i.department}}</h3></a></td>
 							</h5>
 						</tr>
 						{% endfor %}
