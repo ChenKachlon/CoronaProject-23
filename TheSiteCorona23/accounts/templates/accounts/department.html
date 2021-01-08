@@ -3,4 +3,60 @@
 
 <h3>Department Page</h3>
 
+<br>
+
+<div class="row">
+
+	<div class="col-md-12">
+		<hr>
+
+		<div class="card card-body" id="general">
+			<div class="col-md-2">
+				<a class="btn btn-primary  btn-sm btn-block" href="{% url 'create_request' %}"> <h6>Request</h6> </a>
+
+			</div>
+            		<h4>List of Patients:</h4>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'add_patient' %}"> <h6> Add patient </h6> </a>
+			<table class="table table-sm">
+				<tr>
+					<th>Name</th>
+					<th>ID</th>
+					<th>Phone</th>
+					<th>Status</th>
+					<th>Updating Status</th>
+					<th>Need for ventilator</th>
+					<th>Date of hospitalization</th>
+					<th>Delete patient</th>
+				</tr>
+				{% for i in patients %}
+                {% if i.department == department %}
+				<tr>
+					<td>{{i.name}}</td>
+					<td>{{i.ID}}</td>
+					<td>{{i.phone}}</td>
+					<td>{{i.status}}</td>
+					<td><a class="btn btn-sm btn-info" href="{%url 'update_patient' i.id%}">Update</a></td>
+					<td>{{i.need_ven}}</td>
+					<td>{{i.date_created}}</td>
+					<td><a class="btn btn-sm btn-danger" href="{%url 'delete_patient' i.id%}">Delete</a></td>
+				</tr>
+                {% endif %}
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+
+</div>
+
+	<style>
+	        #logo{
+		}
+		#general{
+		background-color: #D3D3D3;
+		}
+		body{
+			background-color: #7CD1E0;
+		}
+	</style>
 {% endblock content %}

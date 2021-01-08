@@ -2,9 +2,39 @@
 {% load static %}
 {% block content %}
 <form action="" method="POST">
-    {% csrf_token%}
-    {{form}}
 
+    {% csrf_token%}
+    <br>
+    <br>
+    <td>{{form.name}}</td>
+    <br>
+    <br>
+    <td>{{form.ID}}</td>
+    <br>
+    <br>
+    <td>{{form.phone}}</td>
+    <br>
+    <br>
+    <td>{{form.department}}</td>
+    <br>
+    <br>
+    {{form.status}}
+    <br>
+    <br>
+    <td>{{form.need_ven}}</td>
+    <br>
+    <br>
     <input type="submit" name="Submit">
 </form>
+	<script>
+
+		var form_fields = document.getElementsByTagName('input')
+		form_fields[1].placeholder='Enter name..';
+		form_fields[2].placeholder='Enter ID...';
+		form_fields[3].placeholder='Enter phone...';
+
+		for (var field in form_fields){
+			form_fields[field].className += ' form-control'
+		}
+	</script>
 {%endblock%}

@@ -86,10 +86,11 @@ def home(request):
 def departmentPage(request, pk_dep):
     dep = Department.objects.get(id=pk_dep)
     dep_name = dep.department
+    patient = Patient.objects.all()
     all_beds = Bed.objects.all()
     all_ven = Ventilator.objects.all()
-    dep_beds = Bed.objects.all()
-    dep_ven = Ventilator.objects.all()
+    dep_beds = 0
+    dep_ven = 0
     free_beds = 0
     for i in all_beds:
         if i.department == dep_name:
@@ -100,16 +101,10 @@ def departmentPage(request, pk_dep):
         if i.department == dep_name:
             dep_ven += 1
     context = {'department': dep_name, 'beds': dep_beds,
-               'Ventilator': dep_ven, # 'patients': pati,
+               'Ventilator': dep_ven, 'patients': patient,
                'freeBeds': free_beds}
     return render(request, 'accounts/department.html', context)
 
-
-# @login_required(login_url='login')
-# @allowed_users(allowed_roles=['manger', 'help_desk'])
-# def patients(request):
-#     pat = Patient.objects.all()
-#     return render(request, 'accounts/patients.html', {'patients': pat})
 
 @login_required(login_url='login')
 @manger_only
@@ -168,11 +163,11 @@ def ventilators(request):
 
 
 @login_required(login_url='login')
-@manger_only
 def addPatients(request):
     form = PatientForm()
     if request.method == 'POST':
         form = PatientForm(request.POST)
+        form.department = 'Corona'
         if form.is_valid():
             form.save()
             return redirect('/patients/')
@@ -356,7 +351,7 @@ def deleteEquipment(request, pk):
 
 
 @login_required(login_url='login')
-@manger_only
+@allowed_users(allowed_roles=['senior', 'staff', 'help_desk'])
 def createRequest(request):
     form = ReqForm()
     if request.method == 'POST':
