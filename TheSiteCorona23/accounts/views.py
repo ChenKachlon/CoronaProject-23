@@ -83,8 +83,25 @@ def home(request):
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['senior', 'staff', 'help_desk'])
-def departmentPage(request):
-    context = {}
+def departmentPage(request, pk_dep):
+    dep = Department.objects.get(id=pk_dep)
+    dep_name = dep.department
+    all_beds = Bed.objects.all()
+    all_ven = Ventilator.objects.all()
+    dep_beds = Bed.objects.all()
+    dep_ven = Ventilator.objects.all()
+    free_beds = 0
+    for i in all_beds:
+        if i.department == dep_name:
+            dep_beds += 1
+            if i.name == 'Unknown':
+                free_beds += 1
+    for i in all_ven:
+        if i.department == dep_name:
+            dep_ven += 1
+    context = {'department': dep_name, 'beds': dep_beds,
+               'Ventilator': dep_ven, # 'patients': pati,
+               'freeBeds': free_beds}
     return render(request, 'accounts/department.html', context)
 
 

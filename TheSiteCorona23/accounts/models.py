@@ -110,7 +110,6 @@ class RequestForm(models.Model):
 
 
 class Department(models.Model):
-    # department = models.CharField(max_length=200, null=True)
     DEP = (
         ('Corona', 'Corona'),
         ('ENP', 'ENP'),
@@ -121,4 +120,4 @@ class Department(models.Model):
     objects = models.Manager()
 
     def __str__(self):
-        return self.name
+        return self.department
