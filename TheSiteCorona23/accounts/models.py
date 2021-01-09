@@ -2,10 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-# Create your models here.
+# Create our models here.
 
 
 class Bed(models.Model):
+    """make a Bed object with that fields"""
     DEP = (
         ('Corona', 'Corona'),
         ('ENP', 'ENP'),
@@ -16,7 +17,6 @@ class Bed(models.Model):
     department = models.CharField(max_length=200, null=True, choices=DEP)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     room_number = models.IntegerField(null=True)
-    # amount= models.IntegerField(null=True)
     objects = models.Manager()
 
     def __str__(self):
@@ -24,6 +24,7 @@ class Bed(models.Model):
 
 
 class Ventilator(models.Model):
+    """make a Ventilator object with that fields"""
     DEP = (
         ('Corona', 'Corona'),
         ('ENP', 'ENP'),
@@ -43,6 +44,7 @@ class Ventilator(models.Model):
 
 
 class Patient(models.Model):
+    """make a Patient object with that fields"""
     STATUS = (
         ('mildly ill', 'mildly ill'),
         ('medium ill', 'medium ill'),
@@ -72,6 +74,7 @@ class Patient(models.Model):
 
 
 class Concentration(models.Model):
+    """make a Concentration object with that fields"""
     name = models.CharField(max_length=200, null=True)
     Amount = models.IntegerField(null=True)
     objects = models.Manager()
@@ -81,6 +84,7 @@ class Concentration(models.Model):
 
 
 class Equipment(models.Model):
+    """make a Equipment object with that fields"""
     DEP = (
         ('Corona', 'Corona'),
         ('ENP', 'ENP'),
@@ -98,6 +102,7 @@ class Equipment(models.Model):
 
 
 class RequestForm(models.Model):
+    """make a Request object with that fields"""
     OPTION = {
         ('Add Equipment', 'Add Equipment'),
         ('Add Beds', 'Add Beds'),
@@ -113,6 +118,7 @@ class RequestForm(models.Model):
 
 
 class ReportForm(models.Model):
+    """make a Report object with that fields"""
     OPTION = {
         ('Amount of patient', 'Amount of patient'),
         ('Amount of equipment', 'Amount of equipment'),
@@ -135,6 +141,8 @@ class ReportForm(models.Model):
 
 
 class Department(models.Model):
+    """make a Department object with that fields"""
+
     DEP = (
         ('Corona', 'Corona'),
         ('ENP', 'ENP'),
