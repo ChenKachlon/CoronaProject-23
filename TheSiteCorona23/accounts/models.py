@@ -55,14 +55,9 @@ class Patient(models.Model):
         ('YES', 'YES'),
         ('NO', 'NO'),
     )
-    DEP = (
-        ('Corona', 'Corona'),
-        ('ENP', 'ENP'),
-        ('Heart', 'Heart'),
-        ('Emergency room', 'Emergency room'),
-    )
     name = models.CharField(max_length=200, null=True)
     ID = models.CharField(max_length=200, null=True)
+    department = 'Corona'
     phone = models.CharField(max_length=200, null=True)
     status = models.CharField(max_length=200, null=True, choices=STATUS)
     need_ven = models.CharField(max_length=200, null=True, choices=VEN)
@@ -71,6 +66,7 @@ class Patient(models.Model):
 
     def __str__(self):
         return self.name
+
 
 
 class Concentration(models.Model):

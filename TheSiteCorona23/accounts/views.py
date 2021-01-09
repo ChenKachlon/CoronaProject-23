@@ -8,7 +8,7 @@ from django.contrib import messages
 from .models import *
 from .forms import *
 from .decorators import *
-
+from django.shortcuts import get_object_or_404
 
 # Create our views here.
 
@@ -88,7 +88,7 @@ def home(request):
 
 @login_required(login_url='login')
 def departmentPage(request, pk_dep):
-    dep = Department.objects.get(department=pk_dep)
+    dep = get_object_or_404(Department,department=pk_dep)
     dep_name = dep.department
     concentration = Concentration.objects.get(name=dep_name)
     patient = Patient.objects.all()
@@ -178,7 +178,10 @@ def addPatients(request):
         form = PatientForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/patients/')
+            if str(models.User.objects.get(id=request.user.id).last_name):
+                return redirect('/department/'+str(models.User.objects.get(id=request.user.id).last_name))
+            else:
+                return redirect('/patients/')
     context = {'form': form}
     return render(request, 'accounts/patients_form.html', context)
 
@@ -400,7 +403,7 @@ def createReport(request):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['manager', 'help_desk'])
+@manger_only
 def ReqANDRep(request):
     """function that fill the fields of requests&reports page of the website,and reload him """
     req = RequestForm.objects.all()
@@ -410,7 +413,7 @@ def ReqANDRep(request):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['manager', 'help_desk'])
+@manger_only
 def approveRequest(request, pk):
     """a function that approve a exist request and update the database,and reload the page"""
     req = RequestForm.objects.get(id=pk)
@@ -425,7 +428,7 @@ def approveRequest(request, pk):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['manager', 'help_desk'])
+@manger_only
 def rejectRequest(request, pk):
     """a function that reject a exist request and update the database,and reload the page"""
     req = RequestForm.objects.get(id=pk)
@@ -437,7 +440,7 @@ def rejectRequest(request, pk):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['manager', 'help_desk'])
+@manger_only
 def deleteReport(request, pk):
     """a function that delete a exist report and update the database,and reload the page"""
     rep = ReportForm.objects.get(id=pk)

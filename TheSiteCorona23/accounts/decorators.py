@@ -1,5 +1,8 @@
 from django.shortcuts import redirect
 from django.http import HttpResponse
+from . import models
+from django.shortcuts import get_object_or_404
+
 
 
 def unauthenticated_user(view_func):
@@ -33,5 +36,7 @@ def manger_only(view_func):
         if group == 'manger' or group == 'help_desk':
             return view_func(request, *args, **kwargs)
         else:
-            return redirect('department')
+            user = str(models.User.objects.get(id=request.user.id).last_name)
+            url = 'department/' + user
+            return redirect(url)
     return wrapper_func

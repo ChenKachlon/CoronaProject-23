@@ -86,6 +86,9 @@
 </div>
 <br>
 <br>
+<a class="btn btn-dark  btn-sm btn-block" href="{% url 'add_patient' %}"> <h6> Add patient </h6> </a>
+<br>
+<br>
 		<div class="row">
 			<div class="col-md">
 				<div class="card card-body" id="general">
@@ -97,6 +100,7 @@
 							<th>Name</th>
 							<th>ID</th>
 							<th>Phone</th>
+							<th>Department</th>
 							<th>Status</th>
                             <th>Need for ventilator</th>
 							<th>Date of hospitalization</th>
@@ -104,6 +108,7 @@
 
 						</tr>
 						{% for i in patients %}
+
                         {% if department == i.department %}
 						<tr>
 							<td>{{i.name}}</td>
