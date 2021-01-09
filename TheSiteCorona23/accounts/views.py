@@ -9,6 +9,7 @@ from .models import *
 from .forms import *
 from .decorators import *
 
+
 # Create our views here.
 
 @unauthenticated_user
@@ -65,7 +66,7 @@ def home(request):
     pati = Patient.objects.all()
     bedi = Bed.objects.all()
     ven = Ventilator.objects.all()
-    beds = bedi.count()
+    all_beds = bedi.count()
     xx = ven.count()
     free_beds = 0
     for i in Bed.objects.all():
@@ -76,7 +77,7 @@ def home(request):
         free_beds = 'Shortage of beds!!!'
     context = {
         'concentration': concentration,
-        'beds': beds,
+        'beds': all_beds,
         'Ventilator': xx,
         'patients': pati,
         'freeBeds': free_beds,
@@ -87,7 +88,7 @@ def home(request):
 
 @login_required(login_url='login')
 def departmentPage(request, pk_dep):
-    dep = Department.objects.get(id=pk_dep)
+    dep = Department.objects.get(department=pk_dep)
     dep_name = dep.department
     concentration = Concentration.objects.get(name=dep_name)
     patient = Patient.objects.all()
@@ -105,7 +106,7 @@ def departmentPage(request, pk_dep):
         if i.department == dep_name:
             dep_ven += 1
     context = {'department': dep_name, 'dep_beds': dep_beds, 'Beds': all_beds,
-               'Ventilator': dep_ven, 'patients': patient,'concentration':concentration,
+               'Ventilator': dep_ven, 'patients': patient, 'concentration': concentration,
                'freeBeds': free_beds, 'Ventilators': all_ven}
     return render(request, 'accounts/department.html', context)
 
@@ -306,7 +307,6 @@ def setConcentration(request, pk):
     return render(request, 'accounts/concentration_form.html', context)
 
 
-
 @login_required(login_url='login')
 @manger_only
 def equipmentPage(request):
@@ -405,8 +405,9 @@ def ReqANDRep(request):
     """function that fill the fields of requests&reports page of the website,and reload him """
     req = RequestForm.objects.all()
     rep = ReportForm.objects.all()
-    context = {'requests':req,'reports':rep}
+    context = {'requests': req, 'reports': rep}
     return render(request, 'accounts/request&report.html', context)
+
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manager', 'help_desk'])
@@ -422,6 +423,7 @@ def approveRequest(request, pk):
     context = {'req': req}
     return render(request, 'accounts/request_form.html', context)
 
+
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manager', 'help_desk'])
 def rejectRequest(request, pk):
@@ -433,6 +435,7 @@ def rejectRequest(request, pk):
     context = {'req': req}
     return render(request, 'accounts/request_form.html', context)
 
+
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manager', 'help_desk'])
 def deleteReport(request, pk):
@@ -443,4 +446,3 @@ def deleteReport(request, pk):
         return redirect('/')
     context = {'rep': rep}
     return render(request, 'accounts/report_form.html', context)
-

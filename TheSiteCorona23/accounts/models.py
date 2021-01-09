@@ -116,7 +116,7 @@ class ReportForm(models.Model):
     OPTION = {
         ('Amount of patient', 'Amount of patient'),
         ('Amount of equipment', 'Amount of equipment'),
-        ('Usage of equipment','Usage of equipment'),
+        ('Usage of equipment', 'Usage of equipment'),
         ('Treatment', 'Treatment'),
         ('General', 'General'),
     }
