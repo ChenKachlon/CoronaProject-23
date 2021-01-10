@@ -56,6 +56,7 @@
 							<th>ID</th>
 							<th>Phone</th>
 							<th>Status</th>
+							<th>Updating Status</th>
                             <th>Need for ventilator</th>
 							<th>Date of hospitalization</th>
 							<th>Delete patient</th>
@@ -67,6 +68,7 @@
 							<td>{{i.ID}}</td>
 							<td>{{i.phone}}</td>
 							<td>{{i.status}}</td>
+							<td><a class="btn btn-sm btn-info" href="{%url 'update_patient' i.id%}">Update</a></td>
 							<td>{{i.need_ven}}</td>
 							<td>{{i.date_created}}</td>
 							<td><a class="btn btn-sm btn-danger" href="{%url 'delete_patient' i.id%}">Delete</a></td>

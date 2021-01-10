@@ -187,7 +187,6 @@ def addPatients(request):
 
 
 @login_required(login_url='login')
-@manger_only
 def updatePatient(request, pk):
     """function that update a status of exist patient and update the database,and reload the page"""
     patient = Patient.objects.get(id=pk)
@@ -196,25 +195,29 @@ def updatePatient(request, pk):
         form = PatientForm(request.POST, instance=patient)
         if form.is_valid():
             form.save()
-            return redirect('/patients/')
+            if str(models.User.objects.get(id=request.user.id).last_name):
+                return redirect('/department/'+str(models.User.objects.get(id=request.user.id).last_name))
+            else:
+                return redirect('/patients/')
     context = {'form': form}
     return render(request, 'accounts/patients_form.html', context)
 
 
 @login_required(login_url='login')
-@manger_only
 def deletePatient(request, pk):
     """function that remove patient from patients page/home page of the website and update the database,and reload the page"""
     patient = Patient.objects.get(id=pk)
     if request.method == 'POST':
         patient.delete()
-        return redirect('/patients/')
+        if str(models.User.objects.get(id=request.user.id).last_name):
+            return redirect('/department/' + str(models.User.objects.get(id=request.user.id).last_name))
+        else:
+            return redirect('/patients/')
     context = {'patient': patient}
     return render(request, 'accounts/delete_patient.html', context)
 
 
 @login_required(login_url='login')
-@manger_only
 def addBeds(request):
     """function that add a new bed to beds page of the website and update the database,and reload the page """
     form = BedForm()
@@ -222,13 +225,15 @@ def addBeds(request):
         form = BedForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/beds/')
+            if str(models.User.objects.get(id=request.user.id).last_name):
+                return redirect('/department/'+str(models.User.objects.get(id=request.user.id).last_name))
+            else:
+                return redirect('/beds/')
     context = {'form': form}
     return render(request, 'accounts/beds_form.html', context)
 
 
 @login_required(login_url='login')
-@manger_only
 def updateBeds(request, pk):
     """function that update a fields of exist bed and update the database,and reload the page """
     bed = Bed.objects.get(id=pk)
@@ -237,7 +242,10 @@ def updateBeds(request, pk):
         form = BedForm(request.POST, instance=bed)
         if form.is_valid():
             form.save()
-            return redirect('/beds/')
+            if str(models.User.objects.get(id=request.user.id).last_name):
+                return redirect('/department/'+str(models.User.objects.get(id=request.user.id).last_name))
+            else:
+                return redirect('/beds/')
     context = {'form': form}
     return render(request, 'accounts/beds_form.html', context)
 
@@ -249,13 +257,15 @@ def deleteBed(request, pk):
     bed = Bed.objects.get(id=pk)
     if request.method == 'POST':
         bed.delete()
-        return redirect('/beds/')
+        if str(models.User.objects.get(id=request.user.id).last_name):
+            return redirect('/department/' + str(models.User.objects.get(id=request.user.id).last_name))
+        else:
+            return redirect('/beds/')
     context = {'bed': bed}
     return render(request, 'accounts/beds_form.html', context)
 
 
 @login_required(login_url='login')
-@manger_only
 def addVen(request):
     """function that add a new ventilator to ventilators page of the website and update the database,and reload the page """
     form = VenForm()
@@ -263,13 +273,15 @@ def addVen(request):
         form = VenForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/ventilators/')
+            if str(models.User.objects.get(id=request.user.id).last_name):
+                return redirect('/department/' + str(models.User.objects.get(id=request.user.id).last_name))
+            else:
+                return redirect('/ventilators/')
     context = {'form': form}
     return render(request, 'accounts/ventilators_form.html', context)
 
 
 @login_required(login_url='login')
-@manger_only
 def updateVen(request, pk):
     """function that update a fields of exist ventilator and update the database,and reload the page """
     ven = Ventilator.objects.get(id=pk)
@@ -278,7 +290,10 @@ def updateVen(request, pk):
         form = VenForm(request.POST, instance=ven)
         if form.is_valid():
             form.save()
-            return redirect('/ventilators/')
+            if str(models.User.objects.get(id=request.user.id).last_name):
+                return redirect('/department/' + str(models.User.objects.get(id=request.user.id).last_name))
+            else:
+                return redirect('/ventilators/')
     context = {'form': form}
     return render(request, 'accounts/ventilators_form.html', context)
 
@@ -290,13 +305,15 @@ def deleteVen(request, pk):
     ven = Ventilator.objects.get(id=pk)
     if request.method == 'POST':
         ven.delete()
-        return redirect('/ventilators/')
+        if str(models.User.objects.get(id=request.user.id).last_name):
+            return redirect('/department/' + str(models.User.objects.get(id=request.user.id).last_name))
+        else:
+            return redirect('/ventilators/')
     context = {'ven': ven}
     return render(request, 'accounts/ventilators_form.html', context)
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['manger', 'senior', 'staff', 'help_desk'])
 def setConcentration(request, pk):
     """A function that determines the maximum population in the hospital and in each department in the hospital and update the database,and reload the page """
     Con = Concentration.objects.get(name=pk)
@@ -334,7 +351,6 @@ def equipmentPage(request):
 
 
 @login_required(login_url='login')
-@manger_only
 def addEquipment(request):
     """function that add a new medical equipment to equipment page of the website and update the database,and reload the page """
     form = EquipForm
@@ -348,7 +364,6 @@ def addEquipment(request):
 
 
 @login_required(login_url='login')
-@manger_only
 def updateEquipment(request, pk):
     """function that update a fields of exist equipment and update the database,and reload the page """
     eq = Equipment.objects.get(id=pk)
