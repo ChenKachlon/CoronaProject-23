@@ -4,6 +4,7 @@ from accounts.views import *
 
 
 class Test_urls(SimpleTestCase):
+
     def test_login_url_is_resolved(self):
         log_in_url=reverse('login')
         print(resolve(log_in_url))

@@ -50,7 +50,6 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=200, null=True)),
-                ('ID', models.CharField(max_length=200, null=True)),
                 ('phone', models.CharField(max_length=200, null=True)),
                 ('status', models.CharField(choices=[('mildly ill', 'mildly ill'), ('medium ill', 'medium ill'), ('seriously ill', 'seriously ill'), ('dying', 'dying')], max_length=200, null=True)),
                 ('need_ven', models.CharField(choices=[('YES', 'YES'), ('NO', 'NO')], max_length=200, null=True)),
