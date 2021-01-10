@@ -20,13 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63d2144f-b239-42aa-890e-a12b5b598cca" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/test/test_forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/test/test_models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/test/test_views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/CoronaProject-23.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CoronaProject-23.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheSiteCorona23/accounts/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheSiteCorona23/accounts/templates/accounts/department.html" beforeDir="false" afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/templates/accounts/department.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheSiteCorona23/accounts/test/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/test/test_urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheSiteCorona23/accounts/test/test_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/TheSiteCorona23/accounts/test/test_views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TheSiteCorona23/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/TheSiteCorona23/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -89,11 +86,12 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2639" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1609540539544" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1610053159445">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2413" y="180" key="FileChooserDialogImpl" timestamp="1610286390284">
+      <screen x="1920" y="0" width="1280" height="680" />
     </state>
     <state x="2660" y="275" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1609539710953" />
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1610053159445" />
+    <state x="2413" y="180" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1280.680@1920.0.1280.680" timestamp="1610286390284" />
     <state x="461" y="164" key="SettingsEditor" timestamp="1610016404358">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -102,5 +100,9 @@
       <screen x="0" y="25" width="1792" height="1017" />
     </state>
     <state x="0" y="25" width="896" height="1016" key="dock-window-1/0.25.1792.1017@0.25.1792.1017" timestamp="1610037364111" />
+    <state x="148" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1610290273991">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="148" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1610290273991" />
   </component>
 </project>
