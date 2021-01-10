@@ -77,16 +77,14 @@
 					<th>Department</th>
 					<th>Change Department</th>
 					<th>Date of registration</th>
-					<th>Delete equipment</th>
 				</tr>
-				{% for i in equipment %}
+				{% for i in Equipment %}
 				{% if department == i.department %}
 					<tr>
 						<td>{{i.name}}</td>
 						<td>{{i.department}}</td>
 						<td><a class="btn btn-sm btn-info" href="{%url 'update_equip' i.id%}">Change</a></td>
 						<td>{{i.date_registered}}</td>
-						<td><a class="btn btn-sm btn-danger" href="{%url 'delete_equipment' i.id%}">Delete</a></td>
 					</tr>
 				{% endif %}
 				{% endfor %}

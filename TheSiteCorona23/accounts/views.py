@@ -94,6 +94,7 @@ def departmentPage(request, pk_dep):
     patient = Patient.objects.all()
     all_beds = Bed.objects.all()
     all_ven = Ventilator.objects.all()
+    all_equip = Equipment.objects.all()
     dep_beds = 0
     dep_ven = 0
     free_beds = 0
@@ -105,7 +106,7 @@ def departmentPage(request, pk_dep):
     for i in all_ven:
         if i.department == dep_name:
             dep_ven += 1
-    context = {'department': dep_name, 'dep_beds': dep_beds, 'Beds': all_beds,
+    context = {'department': dep_name, 'dep_beds': dep_beds, 'Beds': all_beds,'Equipment':all_equip,
                'Ventilator': dep_ven, 'patients': patient, 'concentration': concentration,
                'freeBeds': free_beds, 'Ventilators': all_ven}
     return render(request, 'accounts/department.html', context)
@@ -358,7 +359,10 @@ def addEquipment(request):
         form = EquipForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/equipment/')
+            if str(models.User.objects.get(id=request.user.id).last_name):
+                return redirect('/department/' + str(models.User.objects.get(id=request.user.id).last_name))
+            else:
+                return redirect('/equipment/')
     context = {'form': form}
     return render(request, 'accounts/equipment_form.html', context)
 
@@ -372,7 +376,10 @@ def updateEquipment(request, pk):
         form = EquipForm(request.POST, instance=eq)
         if form.is_valid():
             form.save()
-            return redirect('/equipment/')
+            if str(models.User.objects.get(id=request.user.id).last_name):
+                return redirect('/department/' + str(models.User.objects.get(id=request.user.id).last_name))
+            else:
+                return redirect('/equipment/')
     context = {'form': form}
     return render(request, 'accounts/equipment_form.html', context)
 
